@@ -1,12 +1,21 @@
 import React from 'react';
-import TableThStyled from "./TableHeadColumnStyled";
+import TableHeadFilter from '../TableHeadFilter/TableHeadFilter';
+import TableThStyled from './TableHeadColumnStyled';
 
-export interface TableHeadColumnTypes {
-  name: string
+interface TableHeadColumnTypes {
+  name: string;
+  onChange: () => void;
+  value: string;
 }
 
-const TableHeadColumn = ({ name }: TableHeadColumnTypes) => (
-  <TableThStyled>{name}</TableThStyled>
+const TableHeadColumn = ({ name, onChange, value }: TableHeadColumnTypes) => (
+  <TableThStyled>
+    {name}
+    <TableHeadFilter
+      dataAttr={value}
+      onchange={onChange}
+    />
+  </TableThStyled>
 );
 
 export default TableHeadColumn;

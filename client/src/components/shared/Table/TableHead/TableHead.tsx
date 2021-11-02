@@ -1,14 +1,27 @@
 import React from 'react';
 import { TableHeadRow } from './TableHeadRow';
 
-export interface TableHeadTypes {
-  headData: string[];
+type HeadData = {
+  firstName?: string,
+  lastName?: string,
+  birthDate?: string,
+  countryOfBirth?: string,
+  code?: string,
+  author?: string,
+  pageCount?: string,
+  publicationDate?: string,
 }
 
-const TableHead = ({ headData }: TableHeadTypes) => (
+interface TableHeadTypes {
+  headData: HeadData[];
+  onChange: () => void;
+}
+
+const TableHead = ({ headData, onChange }: TableHeadTypes) => (
   <thead>
     <TableHeadRow
       allColumnName={headData}
+      onChange={onChange}
     />
   </thead>
 );

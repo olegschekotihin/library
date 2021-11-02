@@ -32,15 +32,26 @@ const Column = styled.td`
 
 const TableBodyRow = ({ rowData }: TableBodyRowTypes) => {
   const { VIEW_MORE_BUTTON } = tableContent;
-
+  console.log('rowData', rowData);
   return (
     <tr>
       {Object.entries(rowData).map((value) => {
-        if ((value[0] !== 'id') && (value[0] !== 'author_id') && (value[0] !== 'description')) {
+        if ((value[0] === 'firstName')
+          || (value[0] === 'lastName')
+          || (value[0] === 'birthDate')
+          || (value[0] === 'countryOfBirth')
+          || (value[0] === 'title')
+          || (value[0] === 'code')
+          || (value[0] === 'author')
+          || (value[0] === 'pagesCount')
+          || (value[0] === 'publicationDate')
+        ) {
+          console.log('value[0]', value[0]);
           return (
             <TableBodyColumn
               columnValue={value[1]}
               key={value[1]}
+              id={value[0]}
             />
           );
         }

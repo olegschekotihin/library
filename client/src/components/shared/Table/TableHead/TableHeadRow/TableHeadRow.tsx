@@ -2,19 +2,33 @@ import React from 'react';
 import styled from 'styled-components';
 import { TableHeadColumn } from '../TableHeadColumn';
 
-export interface TableHeadRowTypes {
-  allColumnName: string[],
+type HeadData = {
+  firstName?: string,
+  lastName?: string,
+  birthDate?: string,
+  countryOfBirth?: string,
+  code?: string,
+  author?: string,
+  pageCount?: string,
+  publicationDate?: string,
+}
+
+interface TableHeadRowTypes {
+  allColumnName: HeadData[];
+  onChange: () => void;
 }
 
 const TableHeadRowStyled = styled.tr`
 `;
 
-const TableHeadRow = ({ allColumnName }: TableHeadRowTypes) => (
+const TableHeadRow = ({ allColumnName, onChange }: TableHeadRowTypes) => (
   <TableHeadRowStyled>
-    {allColumnName.map((columnData: any) => (
+    {Object.entries(allColumnName).map((columnData: any) => (
       <TableHeadColumn
         key={columnData}
-        name={columnData}
+        name={columnData[1]}
+        value={columnData[0]}
+        onChange={onChange}
       />
     ))}
   </TableHeadRowStyled>

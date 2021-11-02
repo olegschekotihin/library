@@ -38,6 +38,7 @@ const Books = ({ booksList }: BooksTypes) => {
       <Table
         headData={BOOKS_TABLE_HEAD}
         bodyData={booksList}
+        numberOfPost={8}
       />
     </PageContainer>
   );

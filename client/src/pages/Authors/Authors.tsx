@@ -36,6 +36,7 @@ const Authors = ({ authorsList }: AuthorsTypes) => {
       <Table
         headData={AUTHORS_TABLE_HEAD}
         bodyData={authorsList}
+        numberOfPost={2}
       />
     </PageContainer>
   );
