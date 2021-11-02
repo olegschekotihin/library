@@ -12,6 +12,22 @@ import { AdditionalInformation } from '../../../pages/AdditionalInformation';
 import { PageNotFound } from '../../../pages/PageNotFound';
 import { Footer } from '../Footer';
 
+// type DataTypes = {
+//   firstName: string,
+//   lastName: string,
+//   birthDate: string,
+//   description: string,
+//   publicationDate: string,
+//   title: string,
+//   author: string,
+//   id: string
+// }
+//
+// interface RoutesTypes {
+//   authors: DataTypes[];
+//   books: DataTypes[];
+// }
+
 const Routes = () => (
   <Router>
     <Header />

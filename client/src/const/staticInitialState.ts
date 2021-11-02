@@ -1,33 +1,3 @@
-export const pageTitle = {
-  PAGE_TITLE_HOME: 'Welcome to web library',
-  PAGE_TITLE_AUTHORS: 'Authors',
-  PAGE_TITLE_BOOKS: 'Books',
-  PAGE_TITLE_NOT_FOUND: 'Page not found!',
-};
-
-export const pagesText = {
-  PAGE_NO_MATCH_FOR: 'No match for',
-};
-
-export const additionalInformationContent = {
-  NAME: 'Name',
-  BIRTHDATE: 'Birthdate',
-  ABOUT: 'About',
-  AUTHOR: 'Author',
-};
-
-export const tableContent = {
-  AUTHORS_TABLE_HEAD: ['First Name', 'Last Name', 'Birth Date', 'Country of birth'],
-  BOOKS_TABLE_HEAD: ['Title', 'Description', 'Code', 'Author', 'Pages count', 'Publication date/year'],
-  VIEW_MORE_BUTTON: 'View more...',
-};
-
-export const navigationLinkList = [
-  { path: '/', name: 'Home' },
-  { path: '/authors', name: 'Authors' },
-  { path: '/books', name: 'Books' },
-];
-
 export const INITIAL_STATE = {
   authors: [
     {
