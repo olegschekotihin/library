@@ -21,9 +21,22 @@ export const PageContainer = styled.section`
   width: 90%;
   margin: 0 auto;
   flex: 1 0 auto;
+  overflow: auto;
 `;
 
-export const PageTitle = styled.h3`
+export const PageContainerSmall = styled.section`
+  max-width: 320px;
+  margin: 0 auto;
   text-align: center;
-  font-size: 24px;
+`;
+
+export const PageTitle = styled.h1`
+  text-align: center;
+  font-size: 28px;
+`;
+
+export const FormStyled = styled.form`
+  padding: 20px;
+  border: 1px solid #e3e3e3;
+  border-radius: 10px;
 `;

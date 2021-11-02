@@ -11,6 +11,8 @@ import { Books } from '../../../pages/Books';
 import { AdditionalInformation } from '../../../pages/AdditionalInformation';
 import { PageNotFound } from '../../../pages/PageNotFound';
 import { Footer } from '../Footer';
+import { Register } from '../../../pages/Register';
+import { Login } from '../../../pages/Login';
 
 // type DataTypes = {
 //   firstName: string,
@@ -46,6 +48,12 @@ const Routes = () => (
       </Route>
       <Route path="/book/:id/:name">
         <AdditionalInformation type="book" />
+      </Route>
+      <Route path="/register">
+        <Register />
+      </Route>
+      <Route path="/login">
+        <Login />
       </Route>
       <Route path="*">
         <PageNotFound />

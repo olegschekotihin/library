@@ -3,6 +3,8 @@ export const pageTitle = {
   PAGE_TITLE_AUTHORS: 'Authors',
   PAGE_TITLE_BOOKS: 'Books',
   PAGE_TITLE_NOT_FOUND: 'Page not found!',
+  PAGE_TITLE_REGISTER: 'Register',
+  PAGE_TITLE_LOGIN: 'Login',
 };
 
 export const pagesText = {
