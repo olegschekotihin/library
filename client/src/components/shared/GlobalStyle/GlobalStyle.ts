@@ -1,4 +1,5 @@
 import styled, { createGlobalStyle } from 'styled-components';
+import { Link } from 'react-router-dom';
 import { COLORS } from '../../../const';
 
 export const GlobalStyle = createGlobalStyle`
@@ -40,4 +41,14 @@ export const FormStyled = styled.form`
   padding: 1.25em;
   border: 1px solid ${COLORS.GRAY};
   border-radius: 10px;
+`;
+
+export const InnerLink = styled(Link)`
+  color: ${COLORS.VIOLET};
+  text-decoration: none;
+  transition: 300ms;
+  &:hover {
+    color: ${COLORS.LIGHT_VIOLET};
+    transition: 300ms;
+  }
 `;

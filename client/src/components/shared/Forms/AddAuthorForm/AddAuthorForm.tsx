@@ -1,9 +1,9 @@
 import React from 'react';
 import { FormStyled } from '../../GlobalStyle';
-import { Input } from '../Input';
-import { Button } from '../Button';
+import { Input } from '../../Input';
+import { Button } from '../../Button';
 
-function CreateAuthorForm() {
+function AddAuthorForm() {
   return (
     <FormStyled>
       <Input
@@ -21,9 +21,9 @@ function CreateAuthorForm() {
         type="text"
         placeholder="Country of birth"
       />
-      <Button value="Send" />
+      <Button value="Add author" />
     </FormStyled>
   );
 }
 
-export default CreateAuthorForm;
+export default AddAuthorForm;

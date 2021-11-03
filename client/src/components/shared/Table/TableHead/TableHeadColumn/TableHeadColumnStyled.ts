@@ -6,6 +6,7 @@ const TableThStyled = styled.th`
   color: ${COLORS.BLACK_GRAY};
   border-bottom: 1px solid ${COLORS.GRAY};
   text-align: left;
+  vertical-align: bottom;
 `;
 
 export default TableThStyled;

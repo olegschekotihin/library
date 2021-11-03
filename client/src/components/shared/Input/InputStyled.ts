@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { COLORS } from '../../../../const';
+import { COLORS } from '../../../const';
 
 const InputStyled = styled.input`
   padding: 0.9375em 1.25em;

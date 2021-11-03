@@ -43,10 +43,10 @@ const App = () => (
         <Route path="/login">
           <Login />
         </Route>
-        <Route path="/create-author">
+        <Route path="/add-author">
           <CreateAuthor />
         </Route>
-        <Route path="/create-book">
+        <Route path="/add-book">
           <CreateBook />
         </Route>
         <Route path="*">

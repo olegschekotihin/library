@@ -5,21 +5,23 @@ import TableThStyled from './TableHeadColumnStyled';
 interface TableHeadColumnTypes {
   name: string;
   onChange: () => void;
-  onClick: () => void;
+  onSort: () => void;
   value: string;
 }
 
 function TableHeadColumn({
-  name, value, onChange, onClick,
+  name, value, onChange, onSort,
 }: TableHeadColumnTypes) {
   return (
     <TableThStyled>
-      <TableHeadFilter
-        dataAttr={value}
-        title={name}
-        onchange={onChange}
-      />
-      <a href={`#?filter-by-${name}`} data-value={value} onClick={onClick}>{name}</a>
+      { (value === 'title' || value === 'firstName') && (
+        <TableHeadFilter
+          dataAttr={value}
+          title={name}
+          onchange={onChange}
+        />
+      )}
+      <a href={`#?filter-by-${name}`} data-value={value} onClick={onSort}>{name}</a>
     </TableThStyled>
   );
 }

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { COLORS } from '../../../../const';
+import { COLORS } from '../../../const';
 
 const ButtonStyled = styled.button`
   min-width: 120px;

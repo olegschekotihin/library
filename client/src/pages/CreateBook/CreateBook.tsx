@@ -1,11 +1,11 @@
 import React from 'react';
-import CreateBookForm from '../../components/shared/Forms/CreateBookForm/CreateBookForm';
+import AddBookForm from '../../components/shared/Forms/AddBookForm/AddBookForm';
 import { PageContainer } from '../../components/shared/GlobalStyle';
 
 function CreateBook() {
   return (
     <PageContainer>
-      <CreateBookForm />
+      <AddBookForm />
     </PageContainer>
   );
 }

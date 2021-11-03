@@ -39,31 +39,35 @@ interface TableBodyTypes {
 const Table = ({ headData, bodyData, numberOfPost }: TableBodyTypes) => {
   const [filterDataValue, setFilterDataValue] = useState('');
   const [dataValue, setDataValue] = useState('');
-  const [clonedBodyData, setClonedBodyData] = useState([]);
+  const [clonedBodyData, setClonedBodyData] = useState(bodyData);
   const [currentPageCount, setCurrentPageCount] = useState(1);
   const initDataLength = bodyData.length;
   const [currentDataLength, setCurrentDataLength] = useState(initDataLength);
   const rowInPageCount = numberOfPost || 10;
   const indexOfLastPost = currentPageCount * rowInPageCount;
   const indexOfFirstPost = indexOfLastPost - rowInPageCount;
-  const slicedBodyData = clonedBodyData.slice(indexOfFirstPost, indexOfLastPost);
+  const slicedBodyDataInit = clonedBodyData.slice(indexOfFirstPost, indexOfLastPost);
+  const [slicedBodyData, setSlicedBodyData] = useState(slicedBodyDataInit);
 
   const onChange = (event) => {
     setFilterDataValue(event.target.value);
     setDataValue(event.target.dataset.name);
   };
 
-  const onClick = (event) => {
-    setClonedBodyData(slicedBodyData.sort(sortByField(event)));
+  const onSort = (event: string) => {
+    setClonedBodyData(clonedBodyData.sort(sortByField(event)));
+    setSlicedBodyData(clonedBodyData.slice(indexOfFirstPost, indexOfLastPost));
+  };
+
+  const onPaginate = (pageNumber: number) => {
+    setCurrentPageCount(pageNumber);
   };
 
   function sortByField(field: string) {
-    return function (a, b) {
+    return function (a: { [x: string]: number; }, b: { [x: string]: number; }) {
       return a[field] > b[field] ? 1 : -1;
     };
   }
-
-  const onPaginate = (pageNumber: number) => setCurrentPageCount(pageNumber);
 
   function filterData(bodyData) {
     return (
@@ -90,6 +94,10 @@ const Table = ({ headData, bodyData, numberOfPost }: TableBodyTypes) => {
   }, [bodyData]);
 
   useEffect(() => {
+    setSlicedBodyData(clonedBodyData.slice(indexOfFirstPost, indexOfLastPost));
+  }, [clonedBodyData]);
+
+  useEffect(() => {
     const newClonedData = filterData(bodyData);
     if (newClonedData.length !== 0) {
       setClonedBodyData(newClonedData);
@@ -100,13 +108,17 @@ const Table = ({ headData, bodyData, numberOfPost }: TableBodyTypes) => {
     }
   }, [filterDataValue]);
 
+  useEffect(() => {
+    setSlicedBodyData(clonedBodyData.slice(indexOfFirstPost, indexOfLastPost));
+  }, [currentPageCount]);
+
   return (
     <>
       <TableStyled>
         <TableHead
           headData={headData}
           onChange={onChange}
-          onClick={onClick}
+          onSort={onSort}
         />
         <TableBody
           bodyData={slicedBodyData}

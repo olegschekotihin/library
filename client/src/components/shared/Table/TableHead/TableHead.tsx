@@ -15,16 +15,16 @@ type HeadData = {
 interface TableHeadTypes {
   headData: HeadData[];
   onChange: () => void;
-  onClick: () => void;
+  onSort: () => void;
 }
 
-function TableHead({ headData, onChange, onClick }: TableHeadTypes) {
+function TableHead({ headData, onChange, onSort }: TableHeadTypes) {
   return (
     <thead>
       <TableHeadRow
         allColumnName={headData}
         onChange={onChange}
-        onClick={onClick}
+        onSort={onSort}
       />
     </thead>
   );

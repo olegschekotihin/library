@@ -5,6 +5,7 @@ import {
 import styled from 'styled-components';
 import { TableBodyColumn } from '../TableBodyColumn';
 import { tableContent } from '../../../../../const';
+import { InnerLink } from '../../../GlobalStyle';
 
 type RowDataTypes = {
   id: string,
@@ -60,7 +61,11 @@ function TableBodyRow({ rowData }: TableBodyRowTypes) {
         (rowData.lastName)
         && (
           <Column>
-            <Link to={`author/${rowData.id}/${rowData.lastName}`}>{VIEW_MORE_BUTTON}</Link>
+            <InnerLink
+              to={`author/${rowData.id}/${rowData.lastName}`}
+            >
+              {VIEW_MORE_BUTTON}
+            </InnerLink>
           </Column>
         )
       }
@@ -68,7 +73,11 @@ function TableBodyRow({ rowData }: TableBodyRowTypes) {
         (rowData.title)
         && (
           <Column>
-            <Link to={`book/${rowData.id}/${rowData.title}`}>{VIEW_MORE_BUTTON}</Link>
+            <InnerLink
+              to={`book/${rowData.id}/${rowData.title}`}
+            >
+              {VIEW_MORE_BUTTON}
+            </InnerLink>
           </Column>
         )
       }

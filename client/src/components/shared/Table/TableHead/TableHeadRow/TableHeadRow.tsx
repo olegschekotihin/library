@@ -16,10 +16,10 @@ type HeadData = {
 interface TableHeadRowTypes {
   allColumnName: HeadData[];
   onChange: () => void;
-  onClick: () => void;
+  onSort: () => void;
 }
 
-function TableHeadRow({ allColumnName, onChange, onClick }: TableHeadRowTypes) {
+function TableHeadRow({ allColumnName, onChange, onSort }: TableHeadRowTypes) {
   return (
     <tr>
       {Object.entries(allColumnName).map((columnData: any) => (
@@ -28,7 +28,7 @@ function TableHeadRow({ allColumnName, onChange, onClick }: TableHeadRowTypes) {
           name={columnData[1]}
           value={columnData[0]}
           onChange={onChange}
-          onClick={onClick}
+          onSort={onSort}
         />
       ))}
     </tr>

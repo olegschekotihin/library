@@ -5,4 +5,5 @@ export const COLORS = {
   LIGHT_GRAY: '#adb5bd',
   BLACK_GRAY: '#525252',
   VIOLET: '#7952b3',
+  LIGHT_VIOLET: '#a678eb',
 };
