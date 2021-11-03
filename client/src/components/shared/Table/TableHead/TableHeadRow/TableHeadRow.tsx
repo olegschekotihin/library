@@ -16,22 +16,23 @@ type HeadData = {
 interface TableHeadRowTypes {
   allColumnName: HeadData[];
   onChange: () => void;
+  onClick: () => void;
 }
 
-const TableHeadRowStyled = styled.tr`
-`;
-
-const TableHeadRow = ({ allColumnName, onChange }: TableHeadRowTypes) => (
-  <TableHeadRowStyled>
-    {Object.entries(allColumnName).map((columnData: any) => (
-      <TableHeadColumn
-        key={columnData}
-        name={columnData[1]}
-        value={columnData[0]}
-        onChange={onChange}
-      />
-    ))}
-  </TableHeadRowStyled>
-);
+function TableHeadRow({ allColumnName, onChange, onClick }: TableHeadRowTypes) {
+  return (
+    <tr>
+      {Object.entries(allColumnName).map((columnData: any) => (
+        <TableHeadColumn
+          key={columnData}
+          name={columnData[1]}
+          value={columnData[0]}
+          onChange={onChange}
+          onClick={onClick}
+        />
+      ))}
+    </tr>
+  );
+}
 
 export default TableHeadRow;

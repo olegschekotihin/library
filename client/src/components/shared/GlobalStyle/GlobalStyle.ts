@@ -1,4 +1,5 @@
 import styled, { createGlobalStyle } from 'styled-components';
+import { COLORS } from '../../../const';
 
 export const GlobalStyle = createGlobalStyle`
   * {
@@ -32,11 +33,11 @@ export const PageContainerSmall = styled.section`
 
 export const PageTitle = styled.h1`
   text-align: center;
-  font-size: 28px;
+  font-size: 1.75em;
 `;
 
 export const FormStyled = styled.form`
-  padding: 20px;
-  border: 1px solid #e3e3e3;
+  padding: 1.25em;
+  border: 1px solid ${COLORS.GRAY};
   border-radius: 10px;
 `;

@@ -14,22 +14,6 @@ import { Footer } from '../Footer';
 import { Register } from '../../../pages/Register';
 import { Login } from '../../../pages/Login';
 
-// type DataTypes = {
-//   firstName: string,
-//   lastName: string,
-//   birthDate: string,
-//   description: string,
-//   publicationDate: string,
-//   title: string,
-//   author: string,
-//   id: string
-// }
-//
-// interface RoutesTypes {
-//   authors: DataTypes[];
-//   books: DataTypes[];
-// }
-
 const Routes = () => (
   <Router>
     <Header />

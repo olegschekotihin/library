@@ -22,7 +22,7 @@ type RowDataTypes = {
 }
 
 interface TableBodyRowTypes {
-  rowData: RowDataTypes
+  rowData: RowDataTypes;
 }
 
 const Column = styled.td`
@@ -30,9 +30,9 @@ const Column = styled.td`
   border-bottom: 1px solid #e3e3e3;
 `;
 
-const TableBodyRow = ({ rowData }: TableBodyRowTypes) => {
+function TableBodyRow({ rowData }: TableBodyRowTypes) {
   const { VIEW_MORE_BUTTON } = tableContent;
-  console.log('rowData', rowData);
+
   return (
     <tr>
       {Object.entries(rowData).map((value) => {
@@ -46,7 +46,6 @@ const TableBodyRow = ({ rowData }: TableBodyRowTypes) => {
           || (value[0] === 'pagesCount')
           || (value[0] === 'publicationDate')
         ) {
-          console.log('value[0]', value[0]);
           return (
             <TableBodyColumn
               columnValue={value[1]}
@@ -75,6 +74,6 @@ const TableBodyRow = ({ rowData }: TableBodyRowTypes) => {
       }
     </tr>
   );
-};
+}
 
 export default TableBodyRow;

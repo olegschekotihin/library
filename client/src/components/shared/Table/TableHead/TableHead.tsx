@@ -15,15 +15,19 @@ type HeadData = {
 interface TableHeadTypes {
   headData: HeadData[];
   onChange: () => void;
+  onClick: () => void;
 }
 
-const TableHead = ({ headData, onChange }: TableHeadTypes) => (
-  <thead>
-    <TableHeadRow
-      allColumnName={headData}
-      onChange={onChange}
-    />
-  </thead>
-);
+function TableHead({ headData, onChange, onClick }: TableHeadTypes) {
+  return (
+    <thead>
+      <TableHeadRow
+        allColumnName={headData}
+        onChange={onChange}
+        onClick={onClick}
+      />
+    </thead>
+  );
+}
 
 export default TableHead;

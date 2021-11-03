@@ -1,9 +1,10 @@
 import styled from 'styled-components';
+import { COLORS } from '../../../const';
 
 const HeaderStyled = styled.header`
-  padding: 10px 0;
-  background-color: #7952b3;
-  border-bottom: 1px solid #e3e3e3;
+  padding: 0.625em 0;
+  background-color: ${COLORS.VIOLET};
+  border-bottom: 1px solid ${COLORS.GRAY};
 `;
 
 export default HeaderStyled;

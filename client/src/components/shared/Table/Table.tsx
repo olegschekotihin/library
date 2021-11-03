@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { TableHead } from './TableHead';
-import { TableBody } from './TableBody';
+import React, {useEffect, useState} from 'react';
+import {TableHead} from './TableHead';
+import {TableBody} from './TableBody';
 import TableStyled from './TableStyled';
-import { Pagination } from '../Pagination';
+import {Pagination} from '../Pagination';
 
 type HeadData = {
   firstName?: string,
@@ -40,40 +40,49 @@ const Table = ({ headData, bodyData, numberOfPost }: TableBodyTypes) => {
   const [filterDataValue, setFilterDataValue] = useState('');
   const [dataValue, setDataValue] = useState('');
   const [clonedBodyData, setClonedBodyData] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPageCount, setCurrentPageCount] = useState(1);
   const initDataLength = bodyData.length;
   const [currentDataLength, setCurrentDataLength] = useState(initDataLength);
-
-  const rowInPage: number = numberOfPost || 10;
-  const indexOfLastPost = currentPage * rowInPage;
-  const indexOfFirstPost = indexOfLastPost - rowInPage;
+  const rowInPageCount = numberOfPost || 10;
+  const indexOfLastPost = currentPageCount * rowInPageCount;
+  const indexOfFirstPost = indexOfLastPost - rowInPageCount;
   const slicedBodyData = clonedBodyData.slice(indexOfFirstPost, indexOfLastPost);
 
-  const onChange = (event:any) => {
+  const onChange = (event) => {
     setFilterDataValue(event.target.value);
     setDataValue(event.target.dataset.name);
   };
 
-  const onPaginate = (pageNumber: number) => setCurrentPage(pageNumber);
-
-  const filter = (bodyData) => {
-    const filteredBodyData = bodyData.filter((user) => {
-      const keysUser = Object.keys(user);
-      let currentElem:any;
-
-      keysUser.forEach((elem) => {
-        if (elem === dataValue) {
-          currentElem = elem;
-        }
-      });
-      if (user[currentElem] === filterDataValue) {
-        return user;
-      }
-      return false;
-    });
-
-    return filteredBodyData;
+  const onClick = (event) => {
+    setClonedBodyData(slicedBodyData.sort(sortByField(event)));
   };
+
+  function sortByField(field: string) {
+    return function (a, b) {
+      return a[field] > b[field] ? 1 : -1;
+    };
+  }
+
+  const onPaginate = (pageNumber: number) => setCurrentPageCount(pageNumber);
+
+  function filterData(bodyData) {
+    return (
+      bodyData.filter((bodyDataElem: {}) => {
+        const keysUser = Object.keys(bodyDataElem);
+        let currentElem: any;
+
+        keysUser.forEach((elem) => {
+          if (elem === dataValue) {
+            currentElem = elem;
+          }
+        });
+        if (bodyDataElem[currentElem] === filterDataValue) {
+          return bodyDataElem;
+        }
+        return false;
+      })
+    );
+  }
 
   useEffect(() => {
     setClonedBodyData(bodyData);
@@ -81,7 +90,7 @@ const Table = ({ headData, bodyData, numberOfPost }: TableBodyTypes) => {
   }, [bodyData]);
 
   useEffect(() => {
-    const newClonedData = filter(bodyData);
+    const newClonedData = filterData(bodyData);
     if (newClonedData.length !== 0) {
       setClonedBodyData(newClonedData);
       setCurrentDataLength(newClonedData.length);
@@ -91,20 +100,20 @@ const Table = ({ headData, bodyData, numberOfPost }: TableBodyTypes) => {
     }
   }, [filterDataValue]);
 
-
   return (
     <>
       <TableStyled>
         <TableHead
           headData={headData}
           onChange={onChange}
+          onClick={onClick}
         />
         <TableBody
           bodyData={slicedBodyData}
         />
       </TableStyled>
       <Pagination
-        postsPerPage={rowInPage}
+        postsPerPage={rowInPageCount}
         totalPosts={currentDataLength}
         onPaginate={onPaginate}
       />

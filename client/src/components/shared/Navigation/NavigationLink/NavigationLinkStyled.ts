@@ -1,11 +1,12 @@
 import styled from 'styled-components';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { COLORS } from '../../../../const';
 
 const NavigationLinkStyled = styled(Link)`
-  margin-right: 15px;
-  padding: 10px;
-  color: #fff;
-  font-size: 18px;
+  margin-right: 0.9375em;
+  padding: 0.625em;
+  color: ${COLORS.WHITE};
+  font-size: 1.125em;
   font-width: 500;
   text-decoration: none;
 `;

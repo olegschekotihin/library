@@ -17,18 +17,20 @@ type BodyData = {
 }
 
 export interface TableBodyTypes {
-  bodyData: BodyData[],
+  bodyData: BodyData[];
 }
 
-const TableBody = ({ bodyData }: TableBodyTypes) => (
-  <tbody>
-    { bodyData.map((rowData: any) => (
-      <TableBodyRow
-        rowData={rowData}
-        key={rowData.id}
-      />
-    )) }
-  </tbody>
-);
+function TableBody({ bodyData }: TableBodyTypes) {
+  return (
+    <tbody>
+      { bodyData.map((rowData: any) => (
+        <TableBodyRow
+          rowData={rowData}
+          key={rowData.id}
+        />
+      )) }
+    </tbody>
+  );
+}
 
 export default TableBody;

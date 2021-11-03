@@ -16,11 +16,11 @@ type booksListTypes = {
 }
 
 type BooksStateTypes = {
-  authors: any
+  authors: any,
 }
 
 interface BooksTypes {
-  booksList: booksListTypes[],
+  booksList: booksListTypes[];
 }
 
 interface StateTypes {
@@ -28,7 +28,7 @@ interface StateTypes {
   state: BooksStateTypes[];
 }
 
-const Books = ({ booksList }: BooksTypes) => {
+function Books({ booksList }: BooksTypes) {
   const { BOOKS_TABLE_HEAD } = tableContent;
   const { PAGE_TITLE_BOOKS } = pageTitle;
 
@@ -42,12 +42,10 @@ const Books = ({ booksList }: BooksTypes) => {
       />
     </PageContainer>
   );
-};
+}
 
 const mapStateToProps = (state: StateTypes) => ({
   booksList: state.booksState.books,
 });
 
 export default connect(mapStateToProps)(Books);
-
-// export default Books;

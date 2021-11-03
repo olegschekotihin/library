@@ -12,5 +12,6 @@ export const tableContent = {
     pagesCount: 'Pages count',
     publicationDate: 'Publication date/year',
   },
-  VIEW_MORE_BUTTON: 'View more...',
+  VIEW_MORE_BUTTON: 'View detail',
+  FILTER_TABLE: 'Filter by',
 };
