@@ -1,8 +1,8 @@
-import React, {useEffect, useState} from 'react';
-import {TableHead} from './TableHead';
-import {TableBody} from './TableBody';
+import React, { useEffect, useState } from 'react';
+import { TableHead } from './TableHead';
+import { TableBody } from './TableBody';
 import TableStyled from './TableStyled';
-import {Pagination} from '../Pagination';
+import { Pagination } from '../Pagination';
 
 type HeadData = {
   firstName?: string,
