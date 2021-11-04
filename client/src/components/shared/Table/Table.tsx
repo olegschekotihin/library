@@ -28,6 +28,18 @@ type BodyData = {
   lastName?: string,
   birthDate?: string,
   countryOfBirth?: string,
+  currentElem?: string | undefined,
+}
+
+type EventType = {
+  target:
+    {
+      value: React.SetStateAction<string>,
+      dataset:
+      {
+        name: React.SetStateAction<string>,
+      }
+    },
 }
 
 interface TableBodyTypes {
@@ -49,7 +61,7 @@ const Table = ({ headData, bodyData, numberOfPost }: TableBodyTypes) => {
   const slicedBodyDataInit = clonedBodyData.slice(indexOfFirstPost, indexOfLastPost);
   const [slicedBodyData, setSlicedBodyData] = useState(slicedBodyDataInit);
 
-  const onChange = (event) => {
+  const onFilter = (event: EventType) => {
     setFilterDataValue(event.target.value);
     setDataValue(event.target.dataset.name);
   };
@@ -69,19 +81,19 @@ const Table = ({ headData, bodyData, numberOfPost }: TableBodyTypes) => {
     };
   }
 
-  function filterData(bodyData) {
+  function filterData(dataForFilter: BodyData[]) {
     return (
-      bodyData.filter((bodyDataElem: {}) => {
-        const keysUser = Object.keys(bodyDataElem);
-        let currentElem: any;
+      dataForFilter.filter((dataForFilterElem: {}) => {
+        const keysUser = Object.keys(dataForFilterElem);
+        let currentElem;
 
         keysUser.forEach((elem) => {
           if (elem === dataValue) {
             currentElem = elem;
           }
         });
-        if (bodyDataElem[currentElem] === filterDataValue) {
-          return bodyDataElem;
+        if (currentElem && dataForFilterElem[currentElem] === filterDataValue) {
+          return dataForFilterElem;
         }
         return false;
       })
@@ -117,7 +129,7 @@ const Table = ({ headData, bodyData, numberOfPost }: TableBodyTypes) => {
       <TableStyled>
         <TableHead
           headData={headData}
-          onChange={onChange}
+          onFilter={onFilter}
           onSort={onSort}
         />
         <TableBody

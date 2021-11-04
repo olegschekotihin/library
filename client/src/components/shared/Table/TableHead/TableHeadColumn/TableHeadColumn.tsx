@@ -4,13 +4,13 @@ import TableThStyled from './TableHeadColumnStyled';
 
 interface TableHeadColumnTypes {
   name: string;
-  onChange: () => void;
+  onFilter: () => void;
   onSort: () => void;
   value: string;
 }
 
 function TableHeadColumn({
-  name, value, onChange, onSort,
+  name, value, onFilter, onSort,
 }: TableHeadColumnTypes) {
   return (
     <TableThStyled>
@@ -18,7 +18,7 @@ function TableHeadColumn({
         <TableHeadFilter
           dataAttr={value}
           title={name}
-          onchange={onChange}
+          onchange={onFilter}
         />
       )}
       <a href={`#?filter-by-${name}`} data-value={value} onClick={onSort}>{name}</a>

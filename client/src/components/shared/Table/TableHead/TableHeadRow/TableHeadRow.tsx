@@ -15,11 +15,11 @@ type HeadData = {
 
 interface TableHeadRowTypes {
   allColumnName: HeadData[];
-  onChange: () => void;
+  onFilter: () => void;
   onSort: () => void;
 }
 
-function TableHeadRow({ allColumnName, onChange, onSort }: TableHeadRowTypes) {
+function TableHeadRow({ allColumnName, onFilter, onSort }: TableHeadRowTypes) {
   return (
     <tr>
       {Object.entries(allColumnName).map((columnData: any) => (
@@ -27,7 +27,7 @@ function TableHeadRow({ allColumnName, onChange, onSort }: TableHeadRowTypes) {
           key={columnData}
           name={columnData[1]}
           value={columnData[0]}
-          onChange={onChange}
+          onFilter={onFilter}
           onSort={onSort}
         />
       ))}
