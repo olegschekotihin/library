@@ -7,10 +7,14 @@ interface InputTypes {
   name: string;
 }
 
-const Input = ({ type, name, placeholder }: InputTypes) => {
+function Input({ type, name, placeholder }: InputTypes) {
   return (
-    <InputStyled name={name} type={type} placeholder={placeholder} />
+    <InputStyled
+      name={name}
+      type={type}
+      placeholder={placeholder}
+    />
   );
-};
+}
 
 export default Input;

@@ -1,4 +1,4 @@
-export const tableContent = {
+export const TABLE_CONTENT = {
   AUTHORS_TABLE_HEAD: {
     firstName: 'First Name',
     lastName: 'Last Name',
@@ -12,5 +12,6 @@ export const tableContent = {
     pagesCount: 'Pages count',
     publicationDate: 'Publication date/year',
   },
-  VIEW_MORE_BUTTON: 'View more...',
+  VIEW_MORE_BUTTON: 'View detail',
+  FILTER_TABLE: 'Filter by',
 };

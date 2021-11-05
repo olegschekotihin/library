@@ -4,18 +4,26 @@ import TableThStyled from './TableHeadColumnStyled';
 
 interface TableHeadColumnTypes {
   name: string;
-  onChange: () => void;
+  onFilter: () => void;
+  onSort: () => void;
   value: string;
 }
 
-const TableHeadColumn = ({ name, onChange, value }: TableHeadColumnTypes) => (
-  <TableThStyled>
-    {name}
-    <TableHeadFilter
-      dataAttr={value}
-      onchange={onChange}
-    />
-  </TableThStyled>
-);
+function TableHeadColumn({
+  name, value, onFilter, onSort,
+}: TableHeadColumnTypes) {
+  return (
+    <TableThStyled>
+      { (value === 'title' || value === 'firstName') && (
+        <TableHeadFilter
+          dataAttr={value}
+          title={name}
+          onchange={onFilter}
+        />
+      )}
+      <a href={`#?filter-by-${name}`} data-value={value} onClick={onSort}>{name}</a>
+    </TableThStyled>
+  );
+}
 
 export default TableHeadColumn;

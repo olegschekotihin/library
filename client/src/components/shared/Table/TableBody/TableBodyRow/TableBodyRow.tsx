@@ -1,10 +1,8 @@
 import React from 'react';
-import {
-  Link,
-} from 'react-router-dom';
-import styled from 'styled-components';
 import { TableBodyColumn } from '../TableBodyColumn';
-import { tableContent } from '../../../../../const';
+import { ColumnStyled } from './TableBodyRowStyled';
+import { TABLE_CONTENT } from '../../../../../const';
+import { InnerLink } from '../../../GlobalStyle';
 
 type RowDataTypes = {
   id: string,
@@ -22,17 +20,12 @@ type RowDataTypes = {
 }
 
 interface TableBodyRowTypes {
-  rowData: RowDataTypes
+  rowData: RowDataTypes;
 }
 
-const Column = styled.td`
-  padding: 10px;
-  border-bottom: 1px solid #e3e3e3;
-`;
+function TableBodyRow({ rowData }: TableBodyRowTypes) {
+  const { VIEW_MORE_BUTTON } = TABLE_CONTENT;
 
-const TableBodyRow = ({ rowData }: TableBodyRowTypes) => {
-  const { VIEW_MORE_BUTTON } = tableContent;
-  console.log('rowData', rowData);
   return (
     <tr>
       {Object.entries(rowData).map((value) => {
@@ -46,7 +39,6 @@ const TableBodyRow = ({ rowData }: TableBodyRowTypes) => {
           || (value[0] === 'pagesCount')
           || (value[0] === 'publicationDate')
         ) {
-          console.log('value[0]', value[0]);
           return (
             <TableBodyColumn
               columnValue={value[1]}
@@ -60,21 +52,29 @@ const TableBodyRow = ({ rowData }: TableBodyRowTypes) => {
       {
         (rowData.lastName)
         && (
-          <Column>
-            <Link to={`author/${rowData.id}/${rowData.lastName}`}>{VIEW_MORE_BUTTON}</Link>
-          </Column>
+          <ColumnStyled>
+            <InnerLink
+              to={`author/${rowData.id}/${rowData.lastName}`}
+            >
+              {VIEW_MORE_BUTTON}
+            </InnerLink>
+          </ColumnStyled>
         )
       }
       {
         (rowData.title)
         && (
-          <Column>
-            <Link to={`book/${rowData.id}/${rowData.title}`}>{VIEW_MORE_BUTTON}</Link>
-          </Column>
+          <ColumnStyled>
+            <InnerLink
+              to={`book/${rowData.id}/${rowData.title}`}
+            >
+              {VIEW_MORE_BUTTON}
+            </InnerLink>
+          </ColumnStyled>
         )
       }
     </tr>
   );
-};
+}
 
 export default TableBodyRow;

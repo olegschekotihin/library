@@ -4,18 +4,7 @@ import {
   useParams,
 } from 'react-router-dom';
 import { PageContainer, PageTitle } from '../../components/shared/GlobalStyle';
-import { additionalInformationContent } from '../../const';
-
-// type DataTypes = {
-//   firstName: string,
-//   lastName: string,
-//   birthDate: string,
-//   description: string,
-//   publicationDate: string,
-//   title: string,
-//   author: string,
-//   id: string,
-// }
+import { ADDITIONAL_INFORMATION_CONTENT } from '../../const';
 
 type authorsListTypes = {
   id: string,
@@ -38,11 +27,11 @@ type booksListTypes = {
 }
 
 type AuthorsStateTypes = {
-  authors: any
+  authors: any,
 }
 
 type BooksStateTypes = {
-  authors: any
+  authors: any,
 }
 
 interface AdditionalTypes {
@@ -57,22 +46,17 @@ interface StateTypes {
   state: BooksStateTypes[] | AuthorsStateTypes[];
 }
 
-// interface DataListTypes {
-//   data: DataTypes[] | any[];
-// }
-
-const AdditionalInformation = ({ type, authorsList, booksList }: AdditionalTypes) => {
+function AdditionalInformation({ type, authorsList, booksList }: AdditionalTypes) {
   const { id }: any = useParams();
   const {
     BIRTHDATE, ABOUT, AUTHOR,
-  } = additionalInformationContent;
+  } = ADDITIONAL_INFORMATION_CONTENT;
   let data: any[] = [];
   if (type === 'author') {
     data = authorsList;
   } else if (type === 'book') {
     data = booksList;
   }
-
   const currentData = data.find((elem: any) => elem.id === id);
 
   return (
@@ -114,7 +98,7 @@ const AdditionalInformation = ({ type, authorsList, booksList }: AdditionalTypes
       )}
     </PageContainer>
   );
-};
+}
 
 const mapStateToProps = (state: StateTypes) => ({
   authorsList: state.authorsState.authors,

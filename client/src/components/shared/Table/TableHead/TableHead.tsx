@@ -14,16 +14,20 @@ type HeadData = {
 
 interface TableHeadTypes {
   headData: HeadData[];
-  onChange: () => void;
+  onFilter: () => void;
+  onSort: () => void;
 }
 
-const TableHead = ({ headData, onChange }: TableHeadTypes) => (
-  <thead>
-    <TableHeadRow
-      allColumnName={headData}
-      onChange={onChange}
-    />
-  </thead>
-);
+function TableHead({ headData, onFilter, onSort }: TableHeadTypes) {
+  return (
+    <thead>
+      <TableHeadRow
+        allColumnName={headData}
+        onFilter={onFilter}
+        onSort={onSort}
+      />
+    </thead>
+  );
+}
 
 export default TableHead;

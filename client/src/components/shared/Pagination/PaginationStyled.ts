@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { COLORS } from '../../../const';
 
 export const PaginateList = styled.ul`
   display: flex;
@@ -9,9 +10,9 @@ export const PaginateList = styled.ul`
 
 export const PaginateLink = styled.a`
   display: block;
-  color: #000;
-  padding: 5px 10px;
-  border: 1px solid #e3e3e3;
-  margin-right: 5px;
+  color: ${COLORS.BLACK};
+  padding: 0.3125em 0.625em;
+  border: 1px solid ${COLORS.GRAY};
+  margin-right: 0.3125em;
   text-decoration: none;
 `;

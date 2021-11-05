@@ -1,20 +1,24 @@
 import React from 'react';
-import { InputFilter } from './TableHeadFilterStyled';
+import { FilterWrapper, InputFilter } from './TableHeadFilterStyled';
+import { TABLE_CONTENT } from '../../../../../const';
 
 interface InputProps {
   onchange: () => void;
   dataAttr: string;
+  title: string;
 }
 
-function TableHeadFilter({ onchange, dataAttr }: InputProps) {
+function TableHeadFilter({ onchange, title, dataAttr }: InputProps) {
+  const { FILTER_TABLE } = TABLE_CONTENT;
   return (
-    <div>
+    <FilterWrapper>
+      {`${FILTER_TABLE} ${title}`}
       <InputFilter
         type="text"
         onChange={onchange}
         data-name={dataAttr}
       />
-    </div>
+    </FilterWrapper>
   );
 }
 

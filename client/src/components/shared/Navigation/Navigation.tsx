@@ -1,11 +1,13 @@
 import React from 'react';
 import { NavigationList } from './NavigationList';
-import { navigationLinkList } from '../../../const';
+import { NAVIGATION_LINK_LIST } from '../../../const';
 
-const Navigation = () => (
-  <NavigationList
-    data={navigationLinkList}
-  />
-);
+function Navigation() {
+  return (
+    <NavigationList
+      data={NAVIGATION_LINK_LIST}
+    />
+  );
+}
 
 export default Navigation;

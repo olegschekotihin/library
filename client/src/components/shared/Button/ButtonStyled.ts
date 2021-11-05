@@ -1,14 +1,15 @@
 import styled from 'styled-components';
+import { COLORS } from '../../../const';
 
 const ButtonStyled = styled.button`
   min-width: 120px;
-  padding: 15px 30px;
+  padding: 0.9375em 1.875em;
   border-radius: 10px;
   border: none;
-  font-size: 16px;
+  font-size: 1em;
   font-weight: bold;
-  background-color: #7952b3;
-  color: #fff;
+  background-color: ${COLORS.VIOLET};
+  color: ${COLORS.WHITE};
   cursor: pointer;
 `;
 

@@ -1,11 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Table } from '../../components/shared/Table';
-import { tableContent, pageTitle } from '../../const';
+import { TABLE_CONTENT, PAGE_TITLE } from '../../const';
 import { PageContainer, PageTitle } from '../../components/shared/GlobalStyle';
 
 type AuthorsStateTypes = {
-  authors: any
+  authors: any,
 }
 
 type authorsListTypes = {
@@ -18,7 +18,7 @@ type authorsListTypes = {
 }
 
 interface AuthorsTypes {
-  authorsList: authorsListTypes[],
+  authorsList: authorsListTypes[];
 }
 
 interface StateTypes {
@@ -26,9 +26,9 @@ interface StateTypes {
   state: AuthorsStateTypes[];
 }
 
-const Authors = ({ authorsList }: AuthorsTypes) => {
-  const { AUTHORS_TABLE_HEAD } = tableContent;
-  const { PAGE_TITLE_AUTHORS } = pageTitle;
+function Authors({ authorsList }: AuthorsTypes) {
+  const { AUTHORS_TABLE_HEAD } = TABLE_CONTENT;
+  const { PAGE_TITLE_AUTHORS } = PAGE_TITLE;
 
   return (
     <PageContainer>
@@ -40,7 +40,7 @@ const Authors = ({ authorsList }: AuthorsTypes) => {
       />
     </PageContainer>
   );
-};
+}
 
 const mapStateToProps = (state: StateTypes) => ({
   authorsList: state.authorsState.authors,

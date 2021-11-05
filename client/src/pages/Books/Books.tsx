@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Table } from '../../components/shared/Table';
-import { tableContent, pageTitle } from '../../const';
+import { TABLE_CONTENT, PAGE_TITLE } from '../../const';
 import { PageContainer, PageTitle } from '../../components/shared/GlobalStyle';
 
 type booksListTypes = {
@@ -16,11 +16,11 @@ type booksListTypes = {
 }
 
 type BooksStateTypes = {
-  authors: any
+  authors: any,
 }
 
 interface BooksTypes {
-  booksList: booksListTypes[],
+  booksList: booksListTypes[];
 }
 
 interface StateTypes {
@@ -28,9 +28,9 @@ interface StateTypes {
   state: BooksStateTypes[];
 }
 
-const Books = ({ booksList }: BooksTypes) => {
-  const { BOOKS_TABLE_HEAD } = tableContent;
-  const { PAGE_TITLE_BOOKS } = pageTitle;
+function Books({ booksList }: BooksTypes) {
+  const { BOOKS_TABLE_HEAD } = TABLE_CONTENT;
+  const { PAGE_TITLE_BOOKS } = PAGE_TITLE;
 
   return (
     <PageContainer>
@@ -42,12 +42,10 @@ const Books = ({ booksList }: BooksTypes) => {
       />
     </PageContainer>
   );
-};
+}
 
 const mapStateToProps = (state: StateTypes) => ({
   booksList: state.booksState.books,
 });
 
 export default connect(mapStateToProps)(Books);
-
-// export default Books;

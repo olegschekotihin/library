@@ -2,17 +2,14 @@ import React from 'react';
 import { PaginateList, PaginateLink } from './PaginationStyled';
 
 interface PaginationProps {
-  postsPerPage: number
-  totalPosts: number
-  onPaginate: any
+  postsPerPage: number;
+  totalPosts: number;
+  onPaginate: (number: number) => void;
 }
 
-const Pagination = ({ postsPerPage, totalPosts, onPaginate }: PaginationProps) => {
-  const pageNumbers:number[] = [];
-
-  for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
-    pageNumbers.push(i);
-  }
+function Pagination({ postsPerPage, totalPosts, onPaginate }: PaginationProps) {
+  const countPageNumber = Math.ceil(totalPosts / postsPerPage);
+  const pageNumbers = Array.from({ length: countPageNumber }, (_, index) => index + 1);
 
   return (
     <nav>
@@ -27,6 +24,6 @@ const Pagination = ({ postsPerPage, totalPosts, onPaginate }: PaginationProps) =
       </PaginateList>
     </nav>
   );
-};
+}
 
 export default Pagination;

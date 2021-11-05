@@ -28,6 +28,18 @@ type BodyData = {
   lastName?: string,
   birthDate?: string,
   countryOfBirth?: string,
+  currentElem?: string | undefined,
+}
+
+type EventType = {
+  target:
+    {
+      value: React.SetStateAction<string>,
+      dataset:
+      {
+        name: React.SetStateAction<string>,
+      }
+    },
 }
 
 interface TableBodyTypes {
@@ -39,41 +51,54 @@ interface TableBodyTypes {
 const Table = ({ headData, bodyData, numberOfPost }: TableBodyTypes) => {
   const [filterDataValue, setFilterDataValue] = useState('');
   const [dataValue, setDataValue] = useState('');
-  const [clonedBodyData, setClonedBodyData] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
+  const [clonedBodyData, setClonedBodyData] = useState(bodyData);
+  const [currentPageCount, setCurrentPageCount] = useState(1);
   const initDataLength = bodyData.length;
   const [currentDataLength, setCurrentDataLength] = useState(initDataLength);
+  const rowInPageCount = numberOfPost || 10;
+  const indexOfLastPost = currentPageCount * rowInPageCount;
+  const indexOfFirstPost = indexOfLastPost - rowInPageCount;
+  const slicedBodyDataInit = clonedBodyData.slice(indexOfFirstPost, indexOfLastPost);
+  const [slicedBodyData, setSlicedBodyData] = useState(slicedBodyDataInit);
 
-  const rowInPage: number = numberOfPost || 10;
-  const indexOfLastPost = currentPage * rowInPage;
-  const indexOfFirstPost = indexOfLastPost - rowInPage;
-  const slicedBodyData = clonedBodyData.slice(indexOfFirstPost, indexOfLastPost);
-
-  const onChange = (event:any) => {
+  const onFilter = (event: EventType) => {
     setFilterDataValue(event.target.value);
     setDataValue(event.target.dataset.name);
   };
 
-  const onPaginate = (pageNumber: number) => setCurrentPage(pageNumber);
-
-  const filter = (bodyData) => {
-    const filteredBodyData = bodyData.filter((user) => {
-      const keysUser = Object.keys(user);
-      let currentElem:any;
-
-      keysUser.forEach((elem) => {
-        if (elem === dataValue) {
-          currentElem = elem;
-        }
-      });
-      if (user[currentElem] === filterDataValue) {
-        return user;
-      }
-      return false;
-    });
-
-    return filteredBodyData;
+  const onSort = (event: string) => {
+    setClonedBodyData(clonedBodyData.sort(sortByField(event)));
+    setSlicedBodyData(clonedBodyData.slice(indexOfFirstPost, indexOfLastPost));
   };
+
+  const onPaginate = (pageNumber: number) => {
+    setCurrentPageCount(pageNumber);
+  };
+
+  function sortByField(field: string) {
+    return function (a: { [x: string]: number; }, b: { [x: string]: number; }) {
+      return a[field] > b[field] ? 1 : -1;
+    };
+  }
+
+  function filterData(dataForFilter: BodyData[]) {
+    return (
+      dataForFilter.filter((dataForFilterElem: {}) => {
+        const keysUser = Object.keys(dataForFilterElem);
+        let currentElem;
+
+        keysUser.forEach((elem) => {
+          if (elem === dataValue) {
+            currentElem = elem;
+          }
+        });
+        if (currentElem && dataForFilterElem[currentElem] === filterDataValue) {
+          return dataForFilterElem;
+        }
+        return false;
+      })
+    );
+  }
 
   useEffect(() => {
     setClonedBodyData(bodyData);
@@ -81,7 +106,11 @@ const Table = ({ headData, bodyData, numberOfPost }: TableBodyTypes) => {
   }, [bodyData]);
 
   useEffect(() => {
-    const newClonedData = filter(bodyData);
+    setSlicedBodyData(clonedBodyData.slice(indexOfFirstPost, indexOfLastPost));
+  }, [clonedBodyData]);
+
+  useEffect(() => {
+    const newClonedData = filterData(bodyData);
     if (newClonedData.length !== 0) {
       setClonedBodyData(newClonedData);
       setCurrentDataLength(newClonedData.length);
@@ -91,20 +120,24 @@ const Table = ({ headData, bodyData, numberOfPost }: TableBodyTypes) => {
     }
   }, [filterDataValue]);
 
+  useEffect(() => {
+    setSlicedBodyData(clonedBodyData.slice(indexOfFirstPost, indexOfLastPost));
+  }, [currentPageCount]);
 
   return (
     <>
       <TableStyled>
         <TableHead
           headData={headData}
-          onChange={onChange}
+          onFilter={onFilter}
+          onSort={onSort}
         />
         <TableBody
           bodyData={slicedBodyData}
         />
       </TableStyled>
       <Pagination
-        postsPerPage={rowInPage}
+        postsPerPage={rowInPageCount}
         totalPosts={currentDataLength}
         onPaginate={onPaginate}
       />

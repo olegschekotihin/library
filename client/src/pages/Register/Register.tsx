@@ -1,10 +1,10 @@
 import React from 'react';
-import { pageTitle } from '../../const';
+import { PAGE_TITLE } from '../../const';
 import { PageContainer, PageTitle } from '../../components/shared/GlobalStyle';
-import { RegisterForm } from '../../components/shared/Form/RegisterForm';
+import { RegisterForm } from '../../components/shared/Forms/RegisterForm';
 
 const Register = () => {
-  const { PAGE_TITLE_REGISTER } = pageTitle;
+  const { PAGE_TITLE_REGISTER } = PAGE_TITLE;
   return (
     <PageContainer>
       <PageTitle>

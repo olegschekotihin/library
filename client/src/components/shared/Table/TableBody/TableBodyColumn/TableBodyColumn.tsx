@@ -6,12 +6,14 @@ interface TableBodyColumnTypes {
   id: string;
 }
 
-const TableBodyColumn = ({ columnValue, id }: TableBodyColumnTypes) => (
-  <TableBodyColumnStyled
-    data-id={id}
-  >
-    {columnValue}
-  </TableBodyColumnStyled>
-);
+function TableBodyColumn({ columnValue, id }: TableBodyColumnTypes) {
+  return (
+    <TableBodyColumnStyled
+      data-id={id}
+    >
+      {columnValue}
+    </TableBodyColumnStyled>
+  );
+}
 
 export default TableBodyColumn;
