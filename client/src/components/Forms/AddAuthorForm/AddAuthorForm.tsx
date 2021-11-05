@@ -1,7 +1,7 @@
 import React from 'react';
-import { FormStyled, PageContainerSmall } from '../../GlobalStyle';
-import { Input } from '../../Input';
-import { Button } from '../../Button';
+import { FormStyled, PageContainerSmall } from '../../shared/GlobalStyle';
+import { Input } from '../../shared/Input';
+import { Button } from '../../shared/Button';
 
 function AddAuthorForm() {
   return (

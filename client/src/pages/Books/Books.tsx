@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Table } from '../../components/shared/Table';
+import { Table } from '../../components/Table';
 import { TABLE_CONTENT, PAGE_TITLE } from '../../const';
 import { PageContainer, PageTitle } from '../../components/shared/GlobalStyle';
 

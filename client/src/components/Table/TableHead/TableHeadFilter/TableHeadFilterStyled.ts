@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { COLORS } from '../../../../../const';
+import { COLORS } from '../../../../const';
 
 export const InputFilter = styled.input`
   border: 1px solid ${COLORS.LIGHT_GRAY};

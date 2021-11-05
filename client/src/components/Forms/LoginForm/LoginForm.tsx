@@ -1,7 +1,7 @@
 import React from 'react';
-import { Input } from '../../Input';
-import { Button } from '../../Button';
-import { FormStyled, PageContainerSmall } from '../../GlobalStyle';
+import { Input } from '../../shared/Input';
+import { Button } from '../../shared/Button';
+import { FormStyled, PageContainerSmall } from '../../shared/GlobalStyle';
 
 function LoginForm() {
   return (

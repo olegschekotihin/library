@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { COLORS } from '../../../../../const';
+import { COLORS } from '../../../../const';
 
 const TableThStyled = styled.th`
   padding: 0.625em;

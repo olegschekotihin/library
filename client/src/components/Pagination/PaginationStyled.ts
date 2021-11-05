@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { COLORS } from '../../../const';
+import { COLORS } from '../../const';
 
 export const PaginateList = styled.ul`
   display: flex;

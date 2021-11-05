@@ -1,6 +1,6 @@
 import React from 'react';
 import { FilterWrapper, InputFilter } from './TableHeadFilterStyled';
-import { TABLE_CONTENT } from '../../../../../const';
+import { TABLE_CONTENT } from '../../../../const';
 
 interface InputProps {
   onchange: () => void;

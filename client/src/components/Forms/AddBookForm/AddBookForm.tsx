@@ -1,7 +1,7 @@
 import React from 'react';
-import { FormFlexContainer, FormFlexRow } from '../../GlobalStyle';
-import { Input } from '../../Input';
-import { Button } from '../../Button';
+import { FormFlexContainer, FormFlexRow } from '../../shared/GlobalStyle';
+import { Input } from '../../shared/Input';
+import { Button } from '../../shared/Button';
 
 function AddBookForm() {
   return (

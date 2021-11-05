@@ -1,5 +1,5 @@
 import React from 'react';
-import AddAuthorForm from '../../components/shared/Forms/AddAuthorForm/AddAuthorForm';
+import AddAuthorForm from '../../components/Forms/AddAuthorForm/AddAuthorForm';
 import { PageContainer, PageTitle } from '../../components/shared/GlobalStyle';
 import { PAGE_TITLE } from '../../const';
 

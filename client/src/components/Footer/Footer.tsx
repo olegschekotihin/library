@@ -1,7 +1,7 @@
 import React from 'react';
-import { Navigation } from '../Navigation';
+import { Navigation } from '../shared/Navigation';
 import FooterStyled from './FooterStyled';
-import { PageContainer } from '../GlobalStyle';
+import { PageContainer } from '../shared/GlobalStyle';
 
 function Footer() {
   return (

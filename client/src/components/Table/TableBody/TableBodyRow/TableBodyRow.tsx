@@ -1,8 +1,8 @@
 import React from 'react';
 import { TableBodyColumn } from '../TableBodyColumn';
 import { ColumnStyled } from './TableBodyRowStyled';
-import { TABLE_CONTENT } from '../../../../../const';
-import { InnerLink } from '../../../GlobalStyle';
+import { TABLE_CONTENT } from '../../../../const';
+import { InnerLink } from '../../../shared/GlobalStyle';
 
 type RowDataTypes = {
   id: string,

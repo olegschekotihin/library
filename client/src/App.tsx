@@ -5,7 +5,7 @@ import {
   Route,
   Switch,
 } from 'react-router-dom';
-import { Header } from './components/shared/Header';
+import { Header } from './components/Header';
 import { Home } from './pages/Home';
 import { Authors } from './pages/Authors';
 import { Books } from './pages/Books';
@@ -13,7 +13,7 @@ import { AdditionalInformation } from './pages/AdditionalInformation';
 import { Register } from './pages/Register';
 import { Login } from './pages/Login';
 import { PageNotFound } from './pages/PageNotFound';
-import { Footer } from './components/shared/Footer';
+import { Footer } from './components/Footer';
 import { CreateAuthor } from './pages/CreateAuthor';
 import { CreateBook } from './pages/CreateBook';
 
