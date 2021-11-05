@@ -17,45 +17,47 @@ import { Footer } from './components/shared/Footer';
 import { CreateAuthor } from './pages/CreateAuthor';
 import { CreateBook } from './pages/CreateBook';
 
-const App = () => (
-  <BrowserRouter>
-    <Router>
-      <Header />
-      <Switch>
-        <Route path="/" exact>
-          <Home />
-        </Route>
-        <Route path="/authors" exact>
-          <Authors />
-        </Route>
-        <Route path="/books">
-          <Books />
-        </Route>
-        <Route path="/author/:id/:name">
-          <AdditionalInformation type="author" />
-        </Route>
-        <Route path="/book/:id/:name">
-          <AdditionalInformation type="book" />
-        </Route>
-        <Route path="/register">
-          <Register />
-        </Route>
-        <Route path="/login">
-          <Login />
-        </Route>
-        <Route path="/add-author">
-          <CreateAuthor />
-        </Route>
-        <Route path="/add-book">
-          <CreateBook />
-        </Route>
-        <Route path="*">
-          <PageNotFound />
-        </Route>
-      </Switch>
-      <Footer />
-    </Router>
-  </BrowserRouter>
-);
+const App = () => {
+  return (
+    <BrowserRouter>
+      <Router>
+        <Header />
+        <Switch>
+          <Route path="/" exact>
+            <Home />
+          </Route>
+          <Route path="/authors" exact>
+            <Authors />
+          </Route>
+          <Route path="/books">
+            <Books />
+          </Route>
+          <Route path="/author/:id/:name">
+            <AdditionalInformation type="author" />
+          </Route>
+          <Route path="/book/:id/:name">
+            <AdditionalInformation type="book" />
+          </Route>
+          <Route path="/register">
+            <Register />
+          </Route>
+          <Route path="/login">
+            <Login />
+          </Route>
+          <Route path="/add-author">
+            <CreateAuthor />
+          </Route>
+          <Route path="/add-book">
+            <CreateBook />
+          </Route>
+          <Route path="*">
+            <PageNotFound />
+          </Route>
+        </Switch>
+        <Footer />
+      </Router>
+    </BrowserRouter>
+  );
+};
 
 export default App;

@@ -1,4 +1,4 @@
-export const navigationLinkList = [
+export const NAVIGATION_LINK_LIST = [
   { path: '/', name: 'Home' },
   { path: '/authors', name: 'Authors' },
   { path: '/books', name: 'Books' },

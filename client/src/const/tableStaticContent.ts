@@ -1,4 +1,4 @@
-export const tableContent = {
+export const TABLE_CONTENT = {
   AUTHORS_TABLE_HEAD: {
     firstName: 'First Name',
     lastName: 'Last Name',

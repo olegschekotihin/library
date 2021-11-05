@@ -4,7 +4,7 @@ import { PaginateList, PaginateLink } from './PaginationStyled';
 interface PaginationProps {
   postsPerPage: number;
   totalPosts: number;
-  onPaginate: any;
+  onPaginate: (number: number) => void;
 }
 
 function Pagination({ postsPerPage, totalPosts, onPaginate }: PaginationProps) {

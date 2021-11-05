@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Table } from '../../components/shared/Table';
-import { tableContent, pageTitle } from '../../const';
+import { TABLE_CONTENT, PAGE_TITLE } from '../../const';
 import { PageContainer, PageTitle } from '../../components/shared/GlobalStyle';
 
 type AuthorsStateTypes = {
@@ -27,8 +27,8 @@ interface StateTypes {
 }
 
 function Authors({ authorsList }: AuthorsTypes) {
-  const { AUTHORS_TABLE_HEAD } = tableContent;
-  const { PAGE_TITLE_AUTHORS } = pageTitle;
+  const { AUTHORS_TABLE_HEAD } = TABLE_CONTENT;
+  const { PAGE_TITLE_AUTHORS } = PAGE_TITLE;
 
   return (
     <PageContainer>

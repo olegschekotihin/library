@@ -1,6 +1,6 @@
 import React from 'react';
 import { FilterWrapper, InputFilter } from './TableHeadFilterStyled';
-import { tableContent } from '../../../../../const';
+import { TABLE_CONTENT } from '../../../../../const';
 
 interface InputProps {
   onchange: () => void;
@@ -9,7 +9,7 @@ interface InputProps {
 }
 
 function TableHeadFilter({ onchange, title, dataAttr }: InputProps) {
-  const { FILTER_TABLE } = tableContent;
+  const { FILTER_TABLE } = TABLE_CONTENT;
   return (
     <FilterWrapper>
       {`${FILTER_TABLE} ${title}`}

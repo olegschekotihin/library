@@ -4,7 +4,7 @@ import {
   useParams,
 } from 'react-router-dom';
 import { PageContainer, PageTitle } from '../../components/shared/GlobalStyle';
-import { additionalInformationContent } from '../../const';
+import { ADDITIONAL_INFORMATION_CONTENT } from '../../const';
 
 type authorsListTypes = {
   id: string,
@@ -50,7 +50,7 @@ function AdditionalInformation({ type, authorsList, booksList }: AdditionalTypes
   const { id }: any = useParams();
   const {
     BIRTHDATE, ABOUT, AUTHOR,
-  } = additionalInformationContent;
+  } = ADDITIONAL_INFORMATION_CONTENT;
   let data: any[] = [];
   if (type === 'author') {
     data = authorsList;

@@ -1,10 +1,7 @@
 import React from 'react';
-import {
-  Link,
-} from 'react-router-dom';
-import styled from 'styled-components';
 import { TableBodyColumn } from '../TableBodyColumn';
-import { tableContent } from '../../../../../const';
+import { ColumnStyled } from './TableBodyRowStyled';
+import { TABLE_CONTENT } from '../../../../../const';
 import { InnerLink } from '../../../GlobalStyle';
 
 type RowDataTypes = {
@@ -26,13 +23,8 @@ interface TableBodyRowTypes {
   rowData: RowDataTypes;
 }
 
-const Column = styled.td`
-  padding: 10px;
-  border-bottom: 1px solid #e3e3e3;
-`;
-
 function TableBodyRow({ rowData }: TableBodyRowTypes) {
-  const { VIEW_MORE_BUTTON } = tableContent;
+  const { VIEW_MORE_BUTTON } = TABLE_CONTENT;
 
   return (
     <tr>
@@ -60,25 +52,25 @@ function TableBodyRow({ rowData }: TableBodyRowTypes) {
       {
         (rowData.lastName)
         && (
-          <Column>
+          <ColumnStyled>
             <InnerLink
               to={`author/${rowData.id}/${rowData.lastName}`}
             >
               {VIEW_MORE_BUTTON}
             </InnerLink>
-          </Column>
+          </ColumnStyled>
         )
       }
       {
         (rowData.title)
         && (
-          <Column>
+          <ColumnStyled>
             <InnerLink
               to={`book/${rowData.id}/${rowData.title}`}
             >
               {VIEW_MORE_BUTTON}
             </InnerLink>
-          </Column>
+          </ColumnStyled>
         )
       }
     </tr>

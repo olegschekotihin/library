@@ -1,11 +1,11 @@
 import React from 'react';
 import { NavigationList } from './NavigationList';
-import { navigationLinkList } from '../../../const';
+import { NAVIGATION_LINK_LIST } from '../../../const';
 
 function Navigation() {
   return (
     <NavigationList
-      data={navigationLinkList}
+      data={NAVIGATION_LINK_LIST}
     />
   );
 }

@@ -1,12 +1,12 @@
 import React from 'react';
-import { FormStyled } from '../../GlobalStyle';
+import { FormFlexContainer, FormFlexRow } from '../../GlobalStyle';
 import { Input } from '../../Input';
 import { Button } from '../../Button';
 
 function AddBookForm() {
   return (
-    <FormStyled>
-      <div>
+    <FormFlexContainer>
+      <FormFlexRow>
         <Input
           name="title"
           type="text"
@@ -17,8 +17,8 @@ function AddBookForm() {
           type="textarea"
           placeholder="Description"
         />
-      </div>
-      <div>
+      </FormFlexRow>
+      <FormFlexRow>
         <Input
           name="code"
           type="text"
@@ -29,8 +29,8 @@ function AddBookForm() {
           type="author"
           placeholder="Author"
         />
-      </div>
-      <div>
+      </FormFlexRow>
+      <FormFlexRow>
         <Input
           name="pagesCount"
           type="number"
@@ -41,9 +41,11 @@ function AddBookForm() {
           type="text"
           placeholder="Publication date/year"
         />
-      </div>
-      <Button value="Add book" />
-    </FormStyled>
+      </FormFlexRow>
+      <FormFlexRow>
+        <Button value="Add book" />
+      </FormFlexRow>
+    </FormFlexContainer>
   );
 }
 

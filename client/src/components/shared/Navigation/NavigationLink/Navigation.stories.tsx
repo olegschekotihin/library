@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meta } from '@storybook/react';
-import NavigationLink from './index';
+import { NavigationLink } from './index';
 
 export default {
   component: NavigationLink,
