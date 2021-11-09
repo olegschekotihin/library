@@ -8,7 +8,14 @@ interface InputProps {
   title: string;
 }
 
-function TableHeadFilter({ onchange, title, dataAttr }: InputProps) {
+function TableHeadFilter(props: InputProps) {
+  const {
+    onchange,
+    title,
+    dataAttr,
+    ...params
+  } = props;
+
   const { FILTER_TABLE } = TABLE_CONTENT;
   return (
     <FilterWrapper>
@@ -17,6 +24,7 @@ function TableHeadFilter({ onchange, title, dataAttr }: InputProps) {
         type="text"
         onChange={onchange}
         data-name={dataAttr}
+        {...params}
       />
     </FilterWrapper>
   );

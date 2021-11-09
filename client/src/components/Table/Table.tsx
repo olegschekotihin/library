@@ -3,6 +3,7 @@ import { TableHead } from './TableHead';
 import { TableBody } from './TableBody';
 import TableStyled from './TableStyled';
 import { Pagination } from '../Pagination';
+import { TABLE_CONTENT } from '../../const';
 
 type HeadData = {
   firstName?: string,
@@ -16,7 +17,7 @@ type HeadData = {
 }
 
 type BodyData = {
-  id?: string,
+  id: string,
   title?: string,
   description?: string,
   code?: string,
@@ -31,7 +32,7 @@ type BodyData = {
   currentElem?: string | undefined,
 }
 
-type EventType = {
+type EventValue = {
   target:
     {
       value: React.SetStateAction<string>,
@@ -42,26 +43,32 @@ type EventType = {
     },
 }
 
-interface TableBodyTypes {
+interface TableBodyProps {
   headData: HeadData[];
   bodyData: BodyData[];
   numberOfPost: number;
 }
 
-const Table = ({ headData, bodyData, numberOfPost }: TableBodyTypes) => {
+const Table = (props: TableBodyProps) => {
+  const {
+    headData,
+    bodyData,
+    numberOfPost,
+  } = props;
+  const { COUNT_POST_IN_TABLE, INITIAL_PAGE_COUNT } = TABLE_CONTENT;
   const [filterDataValue, setFilterDataValue] = useState('');
   const [dataValue, setDataValue] = useState('');
   const [clonedBodyData, setClonedBodyData] = useState(bodyData);
-  const [currentPageCount, setCurrentPageCount] = useState(1);
+  const [currentPageCount, setCurrentPageCount] = useState(INITIAL_PAGE_COUNT);
   const initDataLength = bodyData.length;
   const [currentDataLength, setCurrentDataLength] = useState(initDataLength);
-  const rowInPageCount = numberOfPost || 10;
+  const rowInPageCount = numberOfPost || COUNT_POST_IN_TABLE;
   const indexOfLastPost = currentPageCount * rowInPageCount;
   const indexOfFirstPost = indexOfLastPost - rowInPageCount;
   const slicedBodyDataInit = clonedBodyData.slice(indexOfFirstPost, indexOfLastPost);
   const [slicedBodyData, setSlicedBodyData] = useState(slicedBodyDataInit);
 
-  const onFilter = (event: EventType) => {
+  const onFilter = (event: EventValue) => {
     setFilterDataValue(event.target.value);
     setDataValue(event.target.dataset.name);
   };

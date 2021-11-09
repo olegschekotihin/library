@@ -12,19 +12,27 @@ type HeadData = {
   publicationDate?: string,
 }
 
-interface TableHeadTypes {
+interface TableHeadProps {
   headData: HeadData[];
   onFilter: () => void;
   onSort: () => void;
 }
 
-function TableHead({ headData, onFilter, onSort }: TableHeadTypes) {
+function TableHead(props: TableHeadProps) {
+  const {
+    headData,
+    onFilter,
+    onSort,
+    ...params
+  } = props;
+
   return (
     <thead>
       <TableHeadRow
         allColumnName={headData}
         onFilter={onFilter}
         onSort={onSort}
+        {...params}
       />
     </thead>
   );

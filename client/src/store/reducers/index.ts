@@ -4,8 +4,8 @@ import authorsReducer from './authorsReducer';
 import booksReducer from './booksReducer';
 
 const rootReducer = combineReducers({
-  authorsState: authorsReducer,
-  booksState: booksReducer,
+  authors: authorsReducer,
+  books: booksReducer,
 });
 
 export default rootReducer;

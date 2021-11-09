@@ -1,9 +1,5 @@
 import { INITIAL_STATE } from '../../const';
-
-type ActionTypes= {
-  action: string,
-  type: string,
-}
+import { ActionTypes } from '../../types';
 
 function booksReducer(state = INITIAL_STATE, action: ActionTypes) {
   switch (action.type) {

@@ -16,17 +16,23 @@ type BodyData = {
   countryOfBirth?: string,
 }
 
-export interface TableBodyTypes {
+export interface TableBodyProps {
   bodyData: BodyData[];
 }
 
-function TableBody({ bodyData }: TableBodyTypes) {
+function TableBody(props: TableBodyProps) {
+  const {
+    bodyData,
+    ...params
+  } = props;
+
   return (
     <tbody>
       { bodyData.map((rowData: any) => (
         <TableBodyRow
           rowData={rowData}
           key={rowData.id}
+          {...params}
         />
       )) }
     </tbody>

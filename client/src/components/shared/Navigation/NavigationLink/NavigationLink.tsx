@@ -1,14 +1,18 @@
 import React from 'react';
 import NavigationLinkStyled from './NavigationLinkStyled';
 
-interface NavLinkTypes {
+interface NavLinkProps {
   name: string;
   path: string;
 }
 
-function NavigationLink({ name, path }: NavLinkTypes) {
+function NavigationLink(props: NavLinkProps) {
+  const { name, path, ...params } = props;
   return (
-    <NavigationLinkStyled to={path}>
+    <NavigationLinkStyled
+      to={path}
+      {...params}
+    >
       {name}
     </NavigationLinkStyled>
   );

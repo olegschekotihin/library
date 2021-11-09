@@ -3,10 +3,10 @@ import { connect } from 'react-redux';
 import {
   useParams,
 } from 'react-router-dom';
-import { PageContainer, PageTitle } from '../../components/shared/GlobalStyle';
+import { PageContainer, PageTitle } from '../../components/shared/StyledComponents';
 import { ADDITIONAL_INFORMATION_CONTENT } from '../../const';
 
-type authorsListTypes = {
+type AuthorsListValues = {
   id: string,
   firstName: string,
   lastName: string,
@@ -15,7 +15,7 @@ type authorsListTypes = {
   description: string,
 }
 
-type booksListTypes = {
+type BooksListValues = {
   id: string,
   title: string,
   description: string,
@@ -26,30 +26,37 @@ type booksListTypes = {
   authorId: string,
 }
 
-type AuthorsStateTypes = {
+type AuthorsStateValues = {
   authors: any,
 }
 
-type BooksStateTypes = {
+type BooksStateValues = {
   authors: any,
 }
 
-interface AdditionalTypes {
-  authorsList: authorsListTypes[];
-  booksList: booksListTypes[];
+interface AdditionalProps {
+  authorsList: AuthorsListValues[];
+  booksList: BooksListValues[];
   type: string;
 }
 
-interface StateTypes {
-  booksState: any;
-  authorsState: any;
-  state: BooksStateTypes[] | AuthorsStateTypes[];
+interface StateValues {
+  books: any;
+  authors: any;
+  state: AuthorsStateValues[] | BooksStateValues[];
 }
 
-function AdditionalInformation({ type, authorsList, booksList }: AdditionalTypes) {
+function AdditionalInformation(props: AdditionalProps) {
+  const {
+    type,
+    authorsList,
+    booksList,
+  } = props;
   const { id }: any = useParams();
   const {
-    BIRTHDATE, ABOUT, AUTHOR,
+    BIRTHDATE,
+    ABOUT,
+    AUTHOR,
   } = ADDITIONAL_INFORMATION_CONTENT;
   let data: any[] = [];
   if (type === 'author') {
@@ -100,9 +107,9 @@ function AdditionalInformation({ type, authorsList, booksList }: AdditionalTypes
   );
 }
 
-const mapStateToProps = (state: StateTypes) => ({
-  authorsList: state.authorsState.authors,
-  booksList: state.booksState.books,
+const mapStateToProps = (state: StateValues) => ({
+  authorsList: state.authors.authors,
+  booksList: state.books.books,
 });
 
 export default connect(mapStateToProps)(AdditionalInformation);

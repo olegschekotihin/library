@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
 import { TableHeadColumn } from '../TableHeadColumn';
 
 type HeadData = {
@@ -13,13 +12,20 @@ type HeadData = {
   publicationDate?: string,
 }
 
-interface TableHeadRowTypes {
+interface TableHeadRowProps {
   allColumnName: HeadData[];
   onFilter: () => void;
   onSort: () => void;
 }
 
-function TableHeadRow({ allColumnName, onFilter, onSort }: TableHeadRowTypes) {
+function TableHeadRow(props: TableHeadRowProps) {
+  const {
+    allColumnName,
+    onFilter,
+    onSort,
+    ...params
+  } = props;
+
   return (
     <tr>
       {Object.entries(allColumnName).map((columnData: any) => (
@@ -29,6 +35,7 @@ function TableHeadRow({ allColumnName, onFilter, onSort }: TableHeadRowTypes) {
           value={columnData[0]}
           onFilter={onFilter}
           onSort={onSort}
+          {...params}
         />
       ))}
     </tr>

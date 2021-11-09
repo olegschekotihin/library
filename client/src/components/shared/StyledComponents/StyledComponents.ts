@@ -1,22 +1,6 @@
-import styled, { createGlobalStyle } from 'styled-components';
+import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { COLORS } from '../../../const';
-
-export const GlobalStyle = createGlobalStyle`
-  * {
-    font-family: 'Open Sans', sans-serif;
-  }
-  body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Roboto', serif;
-  }
-  #root {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-  }
-`;
 
 export const PageContainer = styled.section`
   max-width: 100%;
@@ -28,7 +12,7 @@ export const PageContainer = styled.section`
 `;
 
 export const PageContainerSmall = styled.section`
-  max-width: 320px;
+  max-width: 20em;
   margin: 0 auto;
   text-align: center;
 `;
@@ -40,9 +24,8 @@ export const PageTitle = styled.h1`
 
 export const FormStyled = styled.form`
   padding: 1.25em;
-  border-radius: 10px;
+  border-radius: 0.625em;
 `;
-
 
 export const InnerLink = styled(Link)`
   color: ${COLORS.VIOLET};
@@ -69,4 +52,8 @@ export const FormFlexContainer = styled.div`
 
 export const FormFlexRow = styled.div`
   display: flex;
+`;
+
+export const WrongNotice = styled.p`
+  color: ${COLORS.RED};
 `;

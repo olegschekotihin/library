@@ -2,7 +2,7 @@ import React from 'react';
 import { TableBodyColumn } from '../TableBodyColumn';
 import { ColumnStyled } from './TableBodyRowStyled';
 import { TABLE_CONTENT } from '../../../../const';
-import { InnerLink } from '../../../shared/GlobalStyle';
+import { InnerLink } from '../../../shared/StyledComponents';
 
 type RowDataTypes = {
   id: string,
@@ -19,11 +19,15 @@ type RowDataTypes = {
   countryOfBirth: string,
 }
 
-interface TableBodyRowTypes {
+interface TableBodyRowProps {
   rowData: RowDataTypes;
 }
 
-function TableBodyRow({ rowData }: TableBodyRowTypes) {
+function TableBodyRow(props: TableBodyRowProps) {
+  const {
+    rowData,
+    ...params
+  } = props;
   const { VIEW_MORE_BUTTON } = TABLE_CONTENT;
 
   return (
@@ -44,6 +48,7 @@ function TableBodyRow({ rowData }: TableBodyRowTypes) {
               columnValue={value[1]}
               key={value[1]}
               id={value[0]}
+              {...params}
             />
           );
         }

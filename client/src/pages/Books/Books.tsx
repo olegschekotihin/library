@@ -1,10 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Table } from '../../components/Table';
-import { TABLE_CONTENT, PAGE_TITLE } from '../../const';
-import { PageContainer, PageTitle } from '../../components/shared/GlobalStyle';
+import { TABLE_CONTENT, PAGES_TITLE } from '../../const';
+import { PageContainer, PageTitle } from '../../components/shared/StyledComponents';
 
-type booksListTypes = {
+type BooksListValues = {
   id: string,
   title: string,
   description: string,
@@ -15,37 +15,36 @@ type booksListTypes = {
   authorId: string,
 }
 
-type BooksStateTypes = {
+type BooksStateValues = {
   authors: any,
 }
 
-interface BooksTypes {
-  booksList: booksListTypes[];
-}
-
 interface StateTypes {
-  booksState: any;
-  state: BooksStateTypes[];
+  books: any;
+  state: BooksStateValues[];
 }
 
-function Books({ booksList }: BooksTypes) {
-  const { BOOKS_TABLE_HEAD } = TABLE_CONTENT;
-  const { PAGE_TITLE_BOOKS } = PAGE_TITLE;
+interface BooksProps {
+  booksList: BooksListValues[];
+}
 
+function Books({ booksList }: BooksProps) {
+  const { BOOKS_TABLE_HEAD, COUNT_POST_IN_BOOK_TABLE } = TABLE_CONTENT;
+  const { PAGE_TITLE_BOOKS } = PAGES_TITLE;
   return (
     <PageContainer>
       <PageTitle>{ PAGE_TITLE_BOOKS }</PageTitle>
       <Table
         headData={BOOKS_TABLE_HEAD}
         bodyData={booksList}
-        numberOfPost={8}
+        numberOfPost={COUNT_POST_IN_BOOK_TABLE}
       />
     </PageContainer>
   );
 }
 
 const mapStateToProps = (state: StateTypes) => ({
-  booksList: state.booksState.books,
+  booksList: state.books.books,
 });
 
 export default connect(mapStateToProps)(Books);

@@ -2,8 +2,8 @@ import styled from 'styled-components';
 import { COLORS } from '../../../../const';
 
 export const InputFilter = styled.input`
-  border: 1px solid ${COLORS.LIGHT_GRAY};
-  border-radius: 5px;
+  border: 0.0625em solid ${COLORS.LIGHT_GRAY};
+  border-radius: 0.3125em;
   padding: 0.5em;
   margin: 0.3125em 0;
 `;
