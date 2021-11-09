@@ -2,16 +2,21 @@ import React from 'react';
 import { NavigationLink } from '../NavigationLink';
 import NavigationListStyled from './NavigationListStyled';
 
-type DataTypes = {
+type DataProps = {
   name: string,
   path: string,
 }
 
-interface NavigationListTypes {
-  data: DataTypes[];
+interface NavigationListProps {
+  data: DataProps[];
 }
 
-function NavigationList({ data }: NavigationListTypes) {
+function NavigationList(props: NavigationListProps) {
+  const {
+    data,
+    ...params
+  } = props;
+
   return (
     <NavigationListStyled>
       {data.map((link: any) => (
@@ -19,6 +24,7 @@ function NavigationList({ data }: NavigationListTypes) {
           <NavigationLink
             path={link.path}
             name={link.name}
+            {...params}
           />
         </li>
       ))}

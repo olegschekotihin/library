@@ -1,10 +1,10 @@
 import React from 'react';
-import { PAGE_TITLE } from '../../const';
-import { PageContainer, PageTitle } from '../../components/shared/GlobalStyle';
-import { LoginForm } from '../../components/shared/Forms/LoginForm';
+import { PAGES_TITLE } from '../../const';
+import { PageContainer, PageTitle } from '../../components/shared/StyledComponents';
+import { LoginForm } from '../../components/Forms/LoginForm';
 
 const Login = () => {
-  const { PAGE_TITLE_LOGIN } = PAGE_TITLE;
+  const { PAGE_TITLE_LOGIN } = PAGES_TITLE;
   return (
     <PageContainer>
       <PageTitle>

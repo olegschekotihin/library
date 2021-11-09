@@ -1,14 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Table } from '../../components/shared/Table';
-import { TABLE_CONTENT, PAGE_TITLE } from '../../const';
-import { PageContainer, PageTitle } from '../../components/shared/GlobalStyle';
+import { Table } from '../../components/Table';
+import { TABLE_CONTENT, PAGES_TITLE } from '../../const';
+import { PageContainer, PageTitle } from '../../components/shared/StyledComponents';
 
-type AuthorsStateTypes = {
+type AuthorsStateValues = {
   authors: any,
 }
 
-type authorsListTypes = {
+type AuthorsListValues = {
   id: string,
   firstName: string,
   lastName: string,
@@ -17,18 +17,18 @@ type authorsListTypes = {
   description: string,
 }
 
-interface AuthorsTypes {
-  authorsList: authorsListTypes[];
+interface AuthorsProps {
+  authorsList: AuthorsListValues[];
 }
 
-interface StateTypes {
-  authorsState: any;
-  state: AuthorsStateTypes[];
+interface StateValues {
+  authors: any;
+  state: AuthorsStateValues[];
 }
 
-function Authors({ authorsList }: AuthorsTypes) {
-  const { AUTHORS_TABLE_HEAD } = TABLE_CONTENT;
-  const { PAGE_TITLE_AUTHORS } = PAGE_TITLE;
+function Authors({ authorsList }: AuthorsProps) {
+  const { AUTHORS_TABLE_HEAD, COUNT_POST_IN_AUTHOR_TABLE } = TABLE_CONTENT;
+  const { PAGE_TITLE_AUTHORS } = PAGES_TITLE;
 
   return (
     <PageContainer>
@@ -36,14 +36,14 @@ function Authors({ authorsList }: AuthorsTypes) {
       <Table
         headData={AUTHORS_TABLE_HEAD}
         bodyData={authorsList}
-        numberOfPost={2}
+        numberOfPost={COUNT_POST_IN_AUTHOR_TABLE}
       />
     </PageContainer>
   );
 }
 
-const mapStateToProps = (state: StateTypes) => ({
-  authorsList: state.authorsState.authors,
+const mapStateToProps = (state: StateValues) => ({
+  authorsList: state.authors.authors,
 });
 
 export default connect(mapStateToProps)(Authors);

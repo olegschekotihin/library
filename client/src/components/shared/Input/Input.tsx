@@ -1,18 +1,25 @@
 import React from 'react';
-import InputStyled from './InputStyled';
+import { InputStyled } from './InputStyled';
 
-interface InputTypes {
+interface InputProps {
   type: string;
-  placeholder: string;
-  name: string;
+  placeholder: string,
+  data: any;
 }
 
-function Input({ type, name, placeholder }: InputTypes) {
+function Input(props: InputProps) {
+  const {
+    type,
+    placeholder,
+    data,
+    ...other
+  } = props;
   return (
     <InputStyled
-      name={name}
       type={type}
       placeholder={placeholder}
+      {...data}
+      {...other}
     />
   );
 }

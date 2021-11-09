@@ -1,13 +1,18 @@
 import React from 'react';
 import ButtonStyled from './ButtonStyled';
 
-interface ButtonTypes {
+interface ButtonProps {
   value: string;
+  disabled: boolean
 }
 
-function Button({ value }: ButtonTypes) {
+function Button(props: ButtonProps) {
+  const { value, disabled, ...params } = props;
   return (
-    <ButtonStyled>
+    <ButtonStyled
+      disabled={disabled}
+      {...params}
+    >
       {value}
     </ButtonStyled>
   );
