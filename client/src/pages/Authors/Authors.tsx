@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 import { Table } from '../../components/Table';
 import { TABLE_CONTENT, PAGES_TITLE } from '../../const';
 import { PageContainer, PageTitle } from '../../components/shared/StyledComponents';
@@ -28,11 +29,11 @@ interface StateValues {
 
 function Authors({ authorsList }: AuthorsProps) {
   const { AUTHORS_TABLE_HEAD, COUNT_POST_IN_AUTHOR_TABLE } = TABLE_CONTENT;
-  const { PAGE_TITLE_AUTHORS } = PAGES_TITLE;
+  const { t, i18n } = useTranslation();
 
   return (
     <PageContainer>
-      <PageTitle>{ PAGE_TITLE_AUTHORS }</PageTitle>
+      <PageTitle>{t('titlesPages.authorsPage')}</PageTitle>
       <Table
         headData={AUTHORS_TABLE_HEAD}
         bodyData={authorsList}

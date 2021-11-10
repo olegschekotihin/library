@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { TableHeadColumn } from '../TableHeadColumn';
 
 type HeadData = {
@@ -23,19 +24,20 @@ function TableHeadRow(props: TableHeadRowProps) {
     allColumnName,
     onFilter,
     onSort,
-    ...params
+    ...other
   } = props;
+  const { t, i18n } = useTranslation(['translation', 'table']);
 
   return (
     <tr>
       {Object.entries(allColumnName).map((columnData: any) => (
         <TableHeadColumn
           key={columnData}
-          name={columnData[1]}
+          name={t(columnData[1], { ns: 'table' })}
           value={columnData[0]}
           onFilter={onFilter}
           onSort={onSort}
-          {...params}
+          {...other}
         />
       ))}
     </tr>

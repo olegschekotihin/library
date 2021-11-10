@@ -1,6 +1,6 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { FilterWrapper, InputFilter } from './TableHeadFilterStyled';
-import { TABLE_CONTENT } from '../../../../const';
 
 interface InputProps {
   onchange: () => void;
@@ -13,18 +13,18 @@ function TableHeadFilter(props: InputProps) {
     onchange,
     title,
     dataAttr,
-    ...params
+    ...other
   } = props;
+  const { t, i18n } = useTranslation();
 
-  const { FILTER_TABLE } = TABLE_CONTENT;
   return (
     <FilterWrapper>
-      {`${FILTER_TABLE} ${title}`}
+      {`${t('formContent.filterBy')} ${title}`}
       <InputFilter
         type="text"
         onChange={onchange}
         data-name={dataAttr}
-        {...params}
+        {...other}
       />
     </FilterWrapper>
   );

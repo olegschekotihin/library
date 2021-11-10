@@ -1,6 +1,8 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { NavigationLink } from '../NavigationLink';
 import NavigationListStyled from './NavigationListStyled';
+
 
 type DataProps = {
   name: string,
@@ -14,8 +16,9 @@ interface NavigationListProps {
 function NavigationList(props: NavigationListProps) {
   const {
     data,
-    ...params
+    ...other
   } = props;
+  const { t, i18n } = useTranslation(['translation', 'navigation']);
 
   return (
     <NavigationListStyled>
@@ -23,8 +26,8 @@ function NavigationList(props: NavigationListProps) {
         <li key={link.name}>
           <NavigationLink
             path={link.path}
-            name={link.name}
-            {...params}
+            name={t(link.name, { ns: 'navigation' })}
+            {...other}
           />
         </li>
       ))}

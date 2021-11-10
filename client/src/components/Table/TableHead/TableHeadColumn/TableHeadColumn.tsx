@@ -15,7 +15,7 @@ function TableHeadColumn(props: TableHeadColumnProps) {
     value,
     onFilter,
     onSort,
-    ...params
+    ...other
   } = props;
 
   return (
@@ -25,7 +25,7 @@ function TableHeadColumn(props: TableHeadColumnProps) {
           dataAttr={value}
           title={name}
           onchange={onFilter}
-          {...params}
+          {...other}
         />
       )}
       <a href={`#?filter-by-${name}`} data-value={value} onClick={onSort}>{name}</a>

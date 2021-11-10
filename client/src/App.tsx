@@ -7,7 +7,7 @@ import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { Routes } from './components/Routes/index';
 
-const App = () => {
+function App() {
   return (
     <BrowserRouter>
       <Router>
@@ -17,6 +17,6 @@ const App = () => {
       </Router>
     </BrowserRouter>
   );
-};
+}
 
 export default App;

@@ -22,6 +22,13 @@ export const PageTitle = styled.h1`
   font-size: 1.75em;
 `;
 
+export const HeaderContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+`;
+
 export const FormStyled = styled.form`
   padding: 1.25em;
   border-radius: 0.625em;
@@ -45,15 +52,32 @@ export const FormFlexContainer = styled.div`
   align-items: center;
   width: 50%;
   margin: 0 auto;
-  Input {
-   margin-right: 0.625em; 
-  }
 `;
 
 export const FormFlexRow = styled.div`
   display: flex;
+  &>div:nth-child(2n) {
+    margin-left: 0.625em;
+  }
+`;
+
+export const InputWrapper = styled.div`
+  width: 100%;
+  margin-bottom: 0.625em;
 `;
 
 export const WrongNotice = styled.p`
   color: ${COLORS.RED};
+`;
+
+export const LanguageSwitcherButton = styled.button`
+    background: ${COLORS.WHITE};
+    border: none;
+    border-radius: 0.375em;
+    font-size: 0.875em;
+    padding: 0.625em;
+    margin-right: 0.3125em;
+    cursor: pointer;
+    font-weight: bold;
+    color: ${COLORS.VIOLET};
 `;

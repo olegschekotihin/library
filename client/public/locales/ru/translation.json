@@ -1,0 +1,34 @@
+{
+  "titlesPages": {
+    "homePage": "Добро пожаловать в электронную библиотеку",
+    "authorsPage": "Авторы",
+    "booksPage": "Книги",
+    "registerPage": "Регистрация",
+    "loginPage": "Логин",
+    "addAuthorPage": "Добавить автора",
+    "addBookPage": "Добавить книгу",
+    "404Page": "Страница не найдена"
+  },
+  "formContent": {
+    "placeholders": {
+      "title": "Название",
+      "description": "Описание",
+      "firstName": "Имя",
+      "lastName": "Фамилия",
+      "pagesCount": "Количество страниц",
+      "selectAuthor": "Выберите автора",
+      "birthDate": "Дата рождения",
+      "countryOfBirth": "Страна происхождения",
+      "email": "Email",
+      "password": "Пароль"
+    },
+    "notice": {
+      "requiredField": "Это обязательное поле",
+      "wrongPassword": "Пароль не может быть меньше 3 и больше 20 символов",
+      "invalidEmail": "Не валидный Email"
+    },
+    "filterBy": "Фильтровать по",
+    "viewDetail": "Подробнее",
+    "submit": "Отправить"
+  }
+}

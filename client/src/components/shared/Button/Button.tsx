@@ -7,11 +7,10 @@ interface ButtonProps {
 }
 
 function Button(props: ButtonProps) {
-  const { value, disabled, ...params } = props;
+  const { value, disabled, ...other } = props;
   return (
     <ButtonStyled
-      disabled={disabled}
-      {...params}
+      {...other}
     >
       {value}
     </ButtonStyled>
