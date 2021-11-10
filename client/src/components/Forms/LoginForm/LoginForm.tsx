@@ -27,8 +27,6 @@ const LoginForm = () => {
     },
   } = useForm<InputsValue>();
 
-  console.log('EMAIL', EMAIL);
-
   const onSubmit: SubmitHandler<InputsValue> = (data) => {
     console.log(JSON.stringify(data));
   };
