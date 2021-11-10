@@ -23,7 +23,7 @@ function TableHead(props: TableHeadProps) {
     headData,
     onFilter,
     onSort,
-    ...params
+    ...other
   } = props;
 
   return (
@@ -32,7 +32,7 @@ function TableHead(props: TableHeadProps) {
         allColumnName={headData}
         onFilter={onFilter}
         onSort={onSort}
-        {...params}
+        {...other}
       />
     </thead>
   );

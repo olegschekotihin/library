@@ -7,11 +7,11 @@ interface NavLinkProps {
 }
 
 function NavigationLink(props: NavLinkProps) {
-  const { name, path, ...params } = props;
+  const { name, path, ...other } = props;
   return (
     <NavigationLinkStyled
       to={path}
-      {...params}
+      {...other}
     >
       {name}
     </NavigationLinkStyled>

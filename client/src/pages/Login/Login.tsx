@@ -1,15 +1,14 @@
 import React from 'react';
-import { PAGES_TITLE } from '../../const';
+import { useTranslation } from 'react-i18next';
 import { PageContainer, PageTitle } from '../../components/shared/StyledComponents';
 import { LoginForm } from '../../components/Forms/LoginForm';
 
 const Login = () => {
-  const { PAGE_TITLE_LOGIN } = PAGES_TITLE;
+  const { t, i18n } = useTranslation();
+
   return (
     <PageContainer>
-      <PageTitle>
-        { PAGE_TITLE_LOGIN }
-      </PageTitle>
+      <PageTitle>{t('titlesPages.loginPage')}</PageTitle>
       <LoginForm />
     </PageContainer>
   );

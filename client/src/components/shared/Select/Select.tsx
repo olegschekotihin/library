@@ -9,17 +9,20 @@ type optionsValues = {
 interface PropsValues {
   optionsData: optionsValues[];
   defaultValue: string;
+  data: any;
+  required: boolean;
 }
 
 function Select(props: PropsValues) {
   const {
     optionsData,
     defaultValue,
+    ...other
   } = props;
 
   return (
-    <SelectStyled defaultValue="Default">
-      <option value="Default" disabled>{defaultValue}</option>
+    <SelectStyled defaultValue="" {...other.data} {...other.required}>
+      <option value="" disabled>{defaultValue}</option>
       {optionsData.map((optionElem: any) => (
         <option
           value={optionElem.id}

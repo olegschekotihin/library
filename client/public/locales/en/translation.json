@@ -1,0 +1,35 @@
+{
+  "titlesPages": {
+    "homePage": "Welcome to web library",
+    "authorsPage": "Authors",
+    "booksPage": "Books",
+    "registerPage": "Register",
+    "loginPage": "Login",
+    "addAuthorPage": "Add author",
+    "addBookPage": "Add book",
+    "404Page": "Page not found!"
+  },
+  "formContent": {
+    "placeholders": {
+      "title": "Title",
+      "description": "Description",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "pagesCount": "Pages count",
+      "selectAuthor": "Select Author",
+      "birthDate": "Birth date",
+      "code": "Code",
+      "countryOfBirth": "Country of Birth",
+      "email": "Email",
+      "password": "Password"
+    },
+    "notice": {
+      "requiredField": "This field is required",
+      "wrongPassword": "Password must have more than 3 characters and less than 20",
+      "invalidEmail": "Email is invalid"
+    },
+    "filterBy": "Filter by",
+    "viewDetail": "View detail",
+    "submit": "Submit"
+  }
+}

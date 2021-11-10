@@ -12,7 +12,7 @@ function Pagination(props: PaginationProps) {
     postsPerPage,
     totalPosts,
     onPaginate,
-    ...params
+    ...other
   } = props;
   const countPageNumber = Math.ceil(totalPosts / postsPerPage);
   const pageNumbers = Array.from({ length: countPageNumber }, (_, index) => index + 1);
@@ -25,7 +25,7 @@ function Pagination(props: PaginationProps) {
             <PaginateLink
               onClick={() => onPaginate(number)}
               href="#"
-              {...params}
+              {...other}
             >
               {number}
             </PaginateLink>

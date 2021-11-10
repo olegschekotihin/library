@@ -1,8 +1,14 @@
 import React from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 import { Input } from '../../shared/Input';
-import { FormStyled, PageContainerSmall, WrongNotice } from '../../shared/StyledComponents';
-import { REGEXP, VALIDATION_ERROR, FORMS_CONTENT } from '../../../const';
+import {
+  FormStyled,
+  InputWrapper,
+  PageContainerSmall,
+  WrongNotice,
+} from '../../shared/StyledComponents';
+import { REGEXP } from '../../../const';
 import { InputTypeSubmit } from '../../shared/Input/InputStyled';
 
 type InputsValue = {
@@ -13,14 +19,8 @@ type InputsValue = {
 };
 
 const RegisterForm = () => {
-  const { INVALID_EMAIL, WRONG_PASSWORD, REQUIRED_FIELD } = VALIDATION_ERROR;
-  const {
-    FIRST_NAME,
-    LAST_NAME,
-    EMAIL,
-    PASSWORD,
-  } = FORMS_CONTENT.PLACEHOLDERS;
-  const { EMAIL_REGEXP } = REGEXP;
+  const { t, i18n } = useTranslation();
+  const { EMAIL } = REGEXP;
   const {
     register,
     handleSubmit,
@@ -36,61 +36,69 @@ const RegisterForm = () => {
   return (
     <PageContainerSmall>
       <FormStyled onSubmit={handleSubmit(onSubmit)}>
-        <Input
-          type="text"
-          placeholder={FIRST_NAME}
-          data={{
-            ...register('firstName',
-              {
-                required: true,
-                maxLength: 10,
-              }),
-          }}
-        />
-        {errors?.firstName?.type === 'required' && <WrongNotice>{REQUIRED_FIELD}</WrongNotice>}
-        <Input
-          type="text"
-          placeholder={LAST_NAME}
-          data={{
-            ...register('lastName',
-              {
-                required: true,
-                maxLength: 10,
-              }),
-          }}
-        />
-        {errors?.lastName?.type === 'required' && <WrongNotice>{REQUIRED_FIELD}</WrongNotice>}
-        <Input
-          type="text"
-          placeholder={EMAIL}
-          data={{
-            ...register('email',
-              {
-                required: true,
-                pattern: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-              }),
-          }}
-        />
-        {errors?.email?.type === 'required' && <WrongNotice>{REQUIRED_FIELD}</WrongNotice>}
-        {errors?.email?.type === 'pattern' && (
-          <WrongNotice>{INVALID_EMAIL}</WrongNotice>
-        )}
-        <Input
-          type="text"
-          placeholder={PASSWORD}
-          data={{
-            ...register('password',
-              {
-                required: true,
-                maxLength: 10,
-              }),
-          }}
-        />
-        {errors?.password?.type === 'required' && <WrongNotice>{REQUIRED_FIELD}</WrongNotice>}
-        {errors?.password?.type === 'maxLength' && (
-          <WrongNotice>{WRONG_PASSWORD}</WrongNotice>
-        )}
-        <InputTypeSubmit type="submit" />
+        <InputWrapper>
+          <Input
+            type="text"
+            placeholder={t('formContent.placeholders.firstName')}
+            data={{
+              ...register('firstName',
+                {
+                  required: true,
+                  maxLength: 10,
+                }),
+            }}
+          />
+          {errors?.firstName?.type === 'required' && <WrongNotice>{t('formContent.notice.requiredField')}</WrongNotice>}
+        </InputWrapper>
+        <InputWrapper>
+          <Input
+            type="text"
+            placeholder={t('formContent.placeholders.lastName')}
+            data={{
+              ...register('lastName',
+                {
+                  required: true,
+                  maxLength: 10,
+                }),
+            }}
+          />
+          {errors?.lastName?.type === 'required' && <WrongNotice>{t('formContent.notice.requiredField')}</WrongNotice>}
+        </InputWrapper>
+        <InputWrapper>
+          <Input
+            type="text"
+            placeholder={t('formContent.placeholders.email')}
+            data={{
+              ...register('email',
+                {
+                  required: true,
+                  pattern: EMAIL,
+                }),
+            }}
+          />
+          {errors?.email?.type === 'required' && <WrongNotice>{t('formContent.notice.requiredField')}</WrongNotice>}
+          {errors?.email?.type === 'pattern' && (
+          <WrongNotice>{t('formContent.notice.invalidEmail')}</WrongNotice>
+          )}
+        </InputWrapper>
+        <InputWrapper>
+          <Input
+            type="text"
+            placeholder={t('formContent.placeholders.password')}
+            data={{
+              ...register('password',
+                {
+                  required: true,
+                  maxLength: 10,
+                }),
+            }}
+          />
+          {errors?.password?.type === 'required' && <WrongNotice>{t('formContent.notice.requiredField')}</WrongNotice>}
+          {errors?.password?.type === 'maxLength' && (
+          <WrongNotice>{t('formContent.notice.wrongPassword')}</WrongNotice>
+          )}
+        </InputWrapper>
+        <InputTypeSubmit type="submit" value={t('formContent.submit')} />
       </FormStyled>
     </PageContainerSmall>
   );

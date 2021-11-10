@@ -1,7 +1,7 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { TableBodyColumn } from '../TableBodyColumn';
 import { ColumnStyled } from './TableBodyRowStyled';
-import { TABLE_CONTENT } from '../../../../const';
 import { InnerLink } from '../../../shared/StyledComponents';
 
 type RowDataTypes = {
@@ -26,9 +26,9 @@ interface TableBodyRowProps {
 function TableBodyRow(props: TableBodyRowProps) {
   const {
     rowData,
-    ...params
+    ...other
   } = props;
-  const { VIEW_MORE_BUTTON } = TABLE_CONTENT;
+  const { t, i18n } = useTranslation();
 
   return (
     <tr>
@@ -48,7 +48,7 @@ function TableBodyRow(props: TableBodyRowProps) {
               columnValue={value[1]}
               key={value[1]}
               id={value[0]}
-              {...params}
+              {...other}
             />
           );
         }
@@ -61,7 +61,7 @@ function TableBodyRow(props: TableBodyRowProps) {
             <InnerLink
               to={`author/${rowData.id}/${rowData.lastName}`}
             >
-              {VIEW_MORE_BUTTON}
+              {t('formContent.viewDetail')}
             </InnerLink>
           </ColumnStyled>
         )
@@ -73,7 +73,7 @@ function TableBodyRow(props: TableBodyRowProps) {
             <InnerLink
               to={`book/${rowData.id}/${rowData.title}`}
             >
-              {VIEW_MORE_BUTTON}
+              {t('formContent.viewDetail')}
             </InnerLink>
           </ColumnStyled>
         )

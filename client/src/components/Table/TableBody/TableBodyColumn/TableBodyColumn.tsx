@@ -10,13 +10,13 @@ function TableBodyColumn(props: TableBodyColumnProps) {
   const {
     columnValue,
     id,
-    ...params
+    ...other
   } = props;
 
   return (
     <TableBodyColumnStyled
       data-id={id}
-      {...params}
+      {...other}
     >
       {columnValue}
     </TableBodyColumnStyled>

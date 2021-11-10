@@ -23,7 +23,7 @@ export interface TableBodyProps {
 function TableBody(props: TableBodyProps) {
   const {
     bodyData,
-    ...params
+    ...other
   } = props;
 
   return (
@@ -32,7 +32,7 @@ function TableBody(props: TableBodyProps) {
         <TableBodyRow
           rowData={rowData}
           key={rowData.id}
-          {...params}
+          {...other}
         />
       )) }
     </tbody>

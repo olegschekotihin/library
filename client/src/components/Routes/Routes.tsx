@@ -9,38 +9,39 @@ import { Login } from '../../pages/Login';
 import { CreateAuthor } from '../../pages/CreateAuthor';
 import { CreateBook } from '../../pages/CreateBook';
 import { PageNotFound } from '../../pages/PageNotFound';
+import { ROUTES_PATH } from '../../const';
 
 function Routes() {
   return (
     <Switch>
-      <Route path="/" exact>
+      <Route path={ROUTES_PATH.HOME} exact>
         <Home />
       </Route>
-      <Route path="/authors" exact>
+      <Route path={ROUTES_PATH.AUTHORS} exact>
         <Authors />
       </Route>
-      <Route path="/books">
+      <Route path={ROUTES_PATH.BOOKS}>
         <Books />
       </Route>
-      <Route path="/author/:id/:name">
+      <Route path={ROUTES_PATH.AUTHORS_ADDITIONAL}>
         <AdditionalInformation type="author" />
       </Route>
-      <Route path="/book/:id/:name">
+      <Route path={ROUTES_PATH.BOOKS_ADDITIONAL}>
         <AdditionalInformation type="book" />
       </Route>
-      <Route path="/register">
+      <Route path={ROUTES_PATH.REGISTER}>
         <Register />
       </Route>
-      <Route path="/login">
+      <Route path={ROUTES_PATH.LOGIN}>
         <Login />
       </Route>
-      <Route path="/add-author">
+      <Route path={ROUTES_PATH.CREATE_AUTHOR}>
         <CreateAuthor />
       </Route>
-      <Route path="/add-book">
+      <Route path={ROUTES_PATH.CREATE_BOOK}>
         <CreateBook />
       </Route>
-      <Route path="*">
+      <Route path={ROUTES_PATH.NOT_FOUND}>
         <PageNotFound />
       </Route>
     </Switch>
