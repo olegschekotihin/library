@@ -1,35 +1,37 @@
 {
-  "titlesPages": {
-    "homePage": "Welcome to web library",
-    "authorsPage": "Authors",
-    "booksPage": "Books",
-    "registerPage": "Register",
-    "loginPage": "Login",
-    "addAuthorPage": "Add author",
-    "addBookPage": "Add book",
-    "404Page": "Page not found!"
+  "titles-pages": {
+    "home-page": "Welcome to web library",
+    "authors-page": "Authors",
+    "books-page": "Books",
+    "register-page": "Register",
+    "login-page": "Login",
+    "add-author-page": "Add author",
+    "add-book-page": "Add book",
+    "user-account-page": "My account",
+    "404-page": "Page not found!"
   },
-  "formContent": {
+  "form-content": {
     "placeholders": {
       "title": "Title",
       "description": "Description",
-      "firstName": "First Name",
-      "lastName": "Last Name",
-      "pagesCount": "Pages count",
-      "selectAuthor": "Select Author",
-      "birthDate": "Birth date",
+      "first-name": "First Name",
+      "last-name": "Last Name",
+      "pages-count": "Pages count",
+      "select-author": "Select Author",
+      "birth-date": "Birth date",
       "code": "Code",
-      "countryOfBirth": "Country of Birth",
+      "country-of-birth": "Country of Birth",
       "email": "Email",
       "password": "Password"
     },
     "notice": {
-      "requiredField": "This field is required",
-      "wrongPassword": "Password must have more than 3 characters and less than 20",
-      "invalidEmail": "Email is invalid"
+      "required-field": "This field is required",
+      "wrong-password": "Password must have more than 3 characters and less than 20",
+      "invalid-email": "Email is invalid"
     },
-    "filterBy": "Filter by",
-    "viewDetail": "View detail",
-    "submit": "Submit"
+    "filter-by": "Filter by",
+    "view-detail": "View detail",
+    "submit": "Submit",
+    "logout": "Log Out"
   }
 }

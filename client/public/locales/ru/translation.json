@@ -1,34 +1,36 @@
 {
-  "titlesPages": {
-    "homePage": "Добро пожаловать в электронную библиотеку",
-    "authorsPage": "Авторы",
-    "booksPage": "Книги",
-    "registerPage": "Регистрация",
-    "loginPage": "Логин",
-    "addAuthorPage": "Добавить автора",
-    "addBookPage": "Добавить книгу",
-    "404Page": "Страница не найдена"
+  "titles-pages": {
+    "home-page": "Добро пожаловать в электронную библиотеку",
+    "authors-page": "Авторы",
+    "books-page": "Книги",
+    "register-page": "Регистрация",
+    "login-page": "Логин",
+    "add-author-page": "Добавить автора",
+    "add-book-page": "Добавить книгу",
+    "user-account-page": "Мой аккаунт",
+    "404-page": "Страница не найдена"
   },
-  "formContent": {
+  "form-content": {
     "placeholders": {
       "title": "Название",
       "description": "Описание",
-      "firstName": "Имя",
-      "lastName": "Фамилия",
-      "pagesCount": "Количество страниц",
-      "selectAuthor": "Выберите автора",
-      "birthDate": "Дата рождения",
-      "countryOfBirth": "Страна происхождения",
+      "first-name": "Имя",
+      "last-name": "Фамилия",
+      "pages-count": "Количество страниц",
+      "select-author": "Выберите автора",
+      "birth-date": "Дата рождения",
+      "country-of-birth": "Страна происхождения",
       "email": "Email",
       "password": "Пароль"
     },
     "notice": {
-      "requiredField": "Это обязательное поле",
-      "wrongPassword": "Пароль не может быть меньше 3 и больше 20 символов",
-      "invalidEmail": "Не валидный Email"
+      "required-field": "Это обязательное поле",
+      "wrong-password": "Пароль не может быть меньше 3 и больше 20 символов",
+      "invalid-email": "Не валидный Email"
     },
-    "filterBy": "Фильтровать по",
-    "viewDetail": "Подробнее",
-    "submit": "Отправить"
+    "filter-by": "Фильтровать по",
+    "view-detail": "Подробнее",
+    "submit": "Отправить",
+    "logout": "Выйти"
   }
 }

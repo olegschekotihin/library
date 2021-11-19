@@ -7,6 +7,13 @@ interface InputProps {
   data: any;
 }
 
+/**
+ * Component for showing input
+ *
+ * @param props
+ * @constructor
+ */
+
 function Input(props: InputProps) {
   const {
     type,

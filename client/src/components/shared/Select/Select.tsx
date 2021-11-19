@@ -13,6 +13,13 @@ interface PropsValues {
   required: boolean;
 }
 
+/**
+ * Component for showing styled select
+ *
+ * @param props
+ * @constructor
+ */
+
 function Select(props: PropsValues) {
   const {
     optionsData,
@@ -22,7 +29,12 @@ function Select(props: PropsValues) {
 
   return (
     <SelectStyled defaultValue="" {...other.data} {...other.required}>
-      <option value="" disabled>{defaultValue}</option>
+      <option
+        value=""
+        disabled
+      >
+        {defaultValue}
+      </option>
       {optionsData.map((optionElem: any) => (
         <option
           value={optionElem.id}

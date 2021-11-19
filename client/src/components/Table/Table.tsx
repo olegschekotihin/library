@@ -47,20 +47,30 @@ interface TableBodyProps {
   headData: HeadData[];
   bodyData: BodyData[];
   numberOfPost: number;
+  tableType: string;
 }
+
+/**
+ * Component for showing responsive table
+ *
+ * @param props
+ * @constructor
+ */
 
 const Table = (props: TableBodyProps) => {
   const {
     headData,
     bodyData,
     numberOfPost,
+    tableType,
   } = props;
+  const dataForTableBody = (bodyData.length > 0) ? bodyData : [];
   const { COUNT_POST_IN_TABLE, INITIAL_PAGE_COUNT } = TABLE_CONTENT;
   const [filterDataValue, setFilterDataValue] = useState('');
   const [dataValue, setDataValue] = useState('');
-  const [clonedBodyData, setClonedBodyData] = useState(bodyData);
+  const [clonedBodyData, setClonedBodyData] = useState(dataForTableBody);
   const [currentPageCount, setCurrentPageCount] = useState(INITIAL_PAGE_COUNT);
-  const initDataLength = bodyData.length;
+  const initDataLength = dataForTableBody.length;
   const [currentDataLength, setCurrentDataLength] = useState(initDataLength);
   const rowInPageCount = numberOfPost || COUNT_POST_IN_TABLE;
   const indexOfLastPost = currentPageCount * rowInPageCount;
@@ -108,8 +118,8 @@ const Table = (props: TableBodyProps) => {
   }
 
   useEffect(() => {
-    setClonedBodyData(bodyData);
-    setCurrentDataLength(bodyData.length);
+    setClonedBodyData(dataForTableBody);
+    setCurrentDataLength(dataForTableBody.length);
   }, [bodyData]);
 
   useEffect(() => {
@@ -117,13 +127,13 @@ const Table = (props: TableBodyProps) => {
   }, [clonedBodyData]);
 
   useEffect(() => {
-    const newClonedData = filterData(bodyData);
+    const newClonedData = filterData(dataForTableBody);
     if (newClonedData.length !== 0) {
       setClonedBodyData(newClonedData);
       setCurrentDataLength(newClonedData.length);
     } else {
-      setClonedBodyData(bodyData);
-      setCurrentDataLength(bodyData.length);
+      setClonedBodyData(dataForTableBody);
+      setCurrentDataLength(dataForTableBody.length);
     }
   }, [filterDataValue]);
 
@@ -141,6 +151,7 @@ const Table = (props: TableBodyProps) => {
         />
         <TableBody
           bodyData={slicedBodyData}
+          tableType={tableType}
         />
       </TableStyled>
       <Pagination

@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { Table } from '../../components/Table';
-import { TABLE_CONTENT, PAGES_TITLE } from '../../const';
+import { AUTHOR_TABLE_TYPE, TABLE_CONTENT } from '../../const';
 import { PageContainer, PageTitle } from '../../components/shared/StyledComponents';
+import { getAuthors } from '../../store/actions/authorActions';
 
 type AuthorsStateValues = {
   authors: any,
@@ -19,7 +20,7 @@ type AuthorsListValues = {
 }
 
 interface AuthorsProps {
-  authorsList: AuthorsListValues[];
+  authors: AuthorsListValues[];
 }
 
 interface StateValues {
@@ -27,24 +28,40 @@ interface StateValues {
   state: AuthorsStateValues[];
 }
 
-function Authors({ authorsList }: AuthorsProps) {
+/**
+ * Page for showing all authors
+ *
+ * @param authorsList
+ * @constructor
+ */
+
+function Authors({ authors, getAuthors }: AuthorsProps) {
   const { AUTHORS_TABLE_HEAD, COUNT_POST_IN_AUTHOR_TABLE } = TABLE_CONTENT;
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
+
+  useEffect(() => {
+    getAuthors();
+  }, []);
 
   return (
     <PageContainer>
-      <PageTitle>{t('titlesPages.authorsPage')}</PageTitle>
+      <PageTitle>{t('titles-pages.authors-page')}</PageTitle>
       <Table
         headData={AUTHORS_TABLE_HEAD}
-        bodyData={authorsList}
+        bodyData={authors}
+        tableType={AUTHOR_TABLE_TYPE}
         numberOfPost={COUNT_POST_IN_AUTHOR_TABLE}
       />
     </PageContainer>
   );
 }
 
-const mapStateToProps = (state: StateValues) => ({
-  authorsList: state.authors.authors,
+const mapDispatchToProps = (dispatch) => ({
+  getAuthors: () => dispatch(getAuthors()),
 });
 
-export default connect(mapStateToProps)(Authors);
+const mapStateToProps = (state: StateValues) => ({
+  authors: state.authors.authors,
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Authors);

@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { Table } from '../../components/Table';
-import { TABLE_CONTENT, PAGES_TITLE } from '../../const';
+import { BOOK_TABLE_TYPE, TABLE_CONTENT } from '../../const';
 import { PageContainer, PageTitle } from '../../components/shared/StyledComponents';
+import { getBooks } from '../../store/actions/bookActions';
 
 type BooksListValues = {
   id: string,
@@ -18,36 +19,48 @@ type BooksListValues = {
 
 type BooksStateValues = {
   authors: any,
-}
-
-interface StateTypes {
-  books: any;
-  state: BooksStateValues[];
+  books: any,
 }
 
 interface BooksProps {
-  booksList: BooksListValues[];
+  books: BooksListValues[];
 }
 
-function Books({ booksList }: BooksProps) {
+/**
+ * Page for showing all books
+ *
+ * @param booksList
+ * @constructor
+ */
+
+function Books({ books, getBooks }: BooksProps) {
   const { BOOKS_TABLE_HEAD, COUNT_POST_IN_BOOK_TABLE } = TABLE_CONTENT;
-  const { PAGE_TITLE_BOOKS } = PAGES_TITLE;
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
+
+  useEffect(() => {
+    getBooks();
+  }, []);
 
   return (
     <PageContainer>
-      <PageTitle>{t('titlesPages.booksPage')}</PageTitle>
+      <PageTitle>{t('titles-pages.books-page')}</PageTitle>
       <Table
         headData={BOOKS_TABLE_HEAD}
-        bodyData={booksList}
+        bodyData={books}
+        tableType={BOOK_TABLE_TYPE}
         numberOfPost={COUNT_POST_IN_BOOK_TABLE}
       />
     </PageContainer>
   );
 }
 
-const mapStateToProps = (state: StateTypes) => ({
-  booksList: state.books.books,
+const mapDispatchToProps = (dispatch: any) => ({
+  getBooks: () => dispatch(getBooks()),
 });
 
-export default connect(mapStateToProps)(Books);
+const mapStateToProps = (state: BooksStateValues) => ({
+  authors: state.authors.authors,
+  books: state.books.books,
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Books);

@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { TableBodyColumn } from '../TableBodyColumn';
 import { ColumnStyled } from './TableBodyRowStyled';
 import { InnerLink } from '../../../shared/StyledComponents';
+import { BOOKS_TABLE_COLUMN, AUTHORS_TABLE_COLUMN } from '../../../../const';
 
 type RowDataTypes = {
   id: string,
@@ -21,59 +22,71 @@ type RowDataTypes = {
 
 interface TableBodyRowProps {
   rowData: RowDataTypes;
+  tableType: string;
 }
+
+/**
+ * Component for showing row in table body
+ *
+ * @param props
+ * @constructor
+ */
 
 function TableBodyRow(props: TableBodyRowProps) {
   const {
     rowData,
+    tableType,
     ...other
   } = props;
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
+  const dataType = (tableType === 'book') ? BOOKS_TABLE_COLUMN : AUTHORS_TABLE_COLUMN;
+
+  const sortingColumnToView = (valuesForSortData: any[], allColumnData: any[]): any[] => {
+    const resultData: any[] = [];
+
+    valuesForSortData.map((column) => {
+      if (allColumnData[0] === column) {
+        return resultData.push(allColumnData);
+      }
+      return false;
+    });
+    return resultData;
+  };
 
   return (
     <tr>
       {Object.entries(rowData).map((value) => {
-        if ((value[0] === 'firstName')
-          || (value[0] === 'lastName')
-          || (value[0] === 'birthDate')
-          || (value[0] === 'countryOfBirth')
-          || (value[0] === 'title')
-          || (value[0] === 'code')
-          || (value[0] === 'author')
-          || (value[0] === 'pagesCount')
-          || (value[0] === 'publicationDate')
-        ) {
-          return (
-            <TableBodyColumn
-              columnValue={value[1]}
-              key={value[1]}
-              id={value[0]}
-              {...other}
-            />
-          );
-        }
-        return false;
+        const sortedData = sortingColumnToView(dataType, value);
+
+        return sortedData.map((item) => (
+          <TableBodyColumn
+            columnValue={item[1]}
+            key={item[1]}
+            id={item[0]}
+            {...other}
+          />
+        ));
       })}
       {
-        (rowData.lastName)
+        (dataType === AUTHORS_TABLE_COLUMN)
         && (
           <ColumnStyled>
             <InnerLink
-              to={`author/${rowData.id}/${rowData.lastName}`}
+              to={`${tableType}/${rowData.id}/${rowData.lastName}`}
             >
-              {t('formContent.viewDetail')}
+              {t('form-content.view-detail')}
             </InnerLink>
           </ColumnStyled>
         )
       }
       {
-        (rowData.title)
+        (dataType === BOOKS_TABLE_COLUMN)
         && (
           <ColumnStyled>
             <InnerLink
-              to={`book/${rowData.id}/${rowData.title}`}
+              to={`${tableType}/${rowData.id}/${rowData.title}`}
             >
-              {t('formContent.viewDetail')}
+              {t('form-content.view-detail')}
             </InnerLink>
           </ColumnStyled>
         )

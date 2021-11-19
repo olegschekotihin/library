@@ -12,6 +12,7 @@ import {
 import { Input } from '../../shared/Input';
 import { Select } from '../../shared/Select';
 import { InputTypeSubmit } from '../../shared/Input/InputStyled';
+import { createBook } from '../../../store/actions/bookActions';
 
 type InputsValue = {
   title: string,
@@ -36,16 +37,26 @@ type AuthorsStateValues = {
 }
 
 interface StateValues {
+  books: any;
   authors: any;
   state: AuthorsStateValues[];
 }
 
 interface AuthorsProps {
   authorsList: AuthorsListValues[];
+  createBook: any;
 }
 
-const AddBookForm = ({ authorsList }: AuthorsProps) => {
-  const { t, i18n } = useTranslation();
+/**
+ * Component for showing form for adding a book
+ *
+ * @param authorsList
+ * @param createBook
+ * @constructor
+ */
+
+const AddBookForm = ({ authorsList, createBook }: AuthorsProps) => {
+  const { t } = useTranslation();
   const {
     register,
     handleSubmit,
@@ -54,8 +65,18 @@ const AddBookForm = ({ authorsList }: AuthorsProps) => {
     },
   } = useForm<InputsValue>();
 
-  const onSubmit: SubmitHandler<InputsValue> = (data) => {
-    console.log(JSON.stringify(data));
+  const onSubmit: SubmitHandler<InputsValue> = (data, event: any) => {
+    event.preventDefault();
+
+    const book = {
+      title: data.title,
+      description: data.description,
+      codeId: data.code,
+      author: data.selectAuthor,
+      pagesCount: data.pagesCount,
+      publicationDate: data.publicationDate,
+    };
+    createBook(book);
   };
 
   return (
@@ -65,7 +86,7 @@ const AddBookForm = ({ authorsList }: AuthorsProps) => {
           <InputWrapper>
             <Input
               type="text"
-              placeholder={t('formContent.placeholders.title')}
+              placeholder={t('form-content.placeholders.title')}
               data={{
                 ...register('title',
                   {
@@ -75,12 +96,12 @@ const AddBookForm = ({ authorsList }: AuthorsProps) => {
                   }),
               }}
             />
-            {errors?.title?.type === 'required' && <WrongNotice>{t('formContent.notice.requiredField')}</WrongNotice>}
+            {errors?.title?.type === 'required' && <WrongNotice>{t('form-content.notice.required-field')}</WrongNotice>}
           </InputWrapper>
           <InputWrapper>
             <Input
               type="text"
-              placeholder={t('formContent.placeholders.description')}
+              placeholder={t('form-content.placeholders.description')}
               data={{
                 ...register('description',
                   {
@@ -89,14 +110,14 @@ const AddBookForm = ({ authorsList }: AuthorsProps) => {
                   }),
               }}
             />
-            {errors?.description?.type === 'required' && <WrongNotice>{t('formContent.notice.requiredField')}</WrongNotice>}
+            {errors?.description?.type === 'required' && <WrongNotice>{t('form-content.notice.required-field')}</WrongNotice>}
           </InputWrapper>
         </FormFlexRow>
         <FormFlexRow>
           <InputWrapper>
             <Input
               type="text"
-              placeholder={t('formContent.placeholders.code')}
+              placeholder={t('form-content.placeholders.code')}
               data={{
                 ...register('code',
                   {
@@ -105,12 +126,12 @@ const AddBookForm = ({ authorsList }: AuthorsProps) => {
                   }),
               }}
             />
-            {errors?.code?.type === 'required' && <WrongNotice>{t('formContent.notice.requiredField')}</WrongNotice>}
+            {errors?.code?.type === 'required' && <WrongNotice>{t('form-content.notice.required-field')}</WrongNotice>}
           </InputWrapper>
           <InputWrapper>
             <Select
               optionsData={authorsList}
-              defaultValue={t('formContent.placeholders.selectAuthor')}
+              defaultValue={t('form-content.placeholders.select-author')}
               data={{
                 ...register(
                   'selectAuthor',
@@ -121,14 +142,14 @@ const AddBookForm = ({ authorsList }: AuthorsProps) => {
               }}
               required
             />
-            {errors?.selectAuthor?.type === 'required' && <WrongNotice>{t('formContent.notice.requiredField')}</WrongNotice>}
+            {errors?.selectAuthor?.type === 'required' && <WrongNotice>{t('form-content.notice.required-field')}</WrongNotice>}
           </InputWrapper>
         </FormFlexRow>
         <FormFlexRow>
           <InputWrapper>
             <Input
               type="number"
-              placeholder={t('formContent.placeholders.pagesCount')}
+              placeholder={t('form-content.placeholders.pages-count')}
               data={{
                 ...register('pagesCount',
                   {
@@ -137,7 +158,7 @@ const AddBookForm = ({ authorsList }: AuthorsProps) => {
                   }),
               }}
             />
-            {errors?.pagesCount?.type === 'required' && <WrongNotice>{t('formContent.notice.requiredField')}</WrongNotice>}
+            {errors?.pagesCount?.type === 'required' && <WrongNotice>{t('form-content.notice.required-field')}</WrongNotice>}
           </InputWrapper>
           <InputWrapper>
             <Input
@@ -150,19 +171,24 @@ const AddBookForm = ({ authorsList }: AuthorsProps) => {
                   }),
               }}
             />
-            {errors?.publicationDate?.type === 'required' && <WrongNotice>{t('formContent.notice.requiredField')}</WrongNotice>}
+            {errors?.publicationDate?.type === 'required' && <WrongNotice>{t('form-content.notice.required-field')}</WrongNotice>}
           </InputWrapper>
         </FormFlexRow>
         <FormFlexRow>
-          <InputTypeSubmit type="submit" value={t('formContent.submit')} />
+          <InputTypeSubmit type="submit" value={t('form-content.submit')} />
         </FormFlexRow>
       </FormStyled>
     </FormFlexContainer>
   );
 };
 
+const mapDispatchToProps = (dispatch) => ({
+  createBook: (bookInfo) => dispatch(createBook(bookInfo)),
+});
+
 const mapStateToProps = (state: StateValues) => ({
+  books: state.books,
   authorsList: state.authors.authors,
 });
 
-export default connect(mapStateToProps)(AddBookForm);
+export default connect(mapStateToProps, mapDispatchToProps)(AddBookForm);

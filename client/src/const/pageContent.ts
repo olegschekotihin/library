@@ -42,21 +42,14 @@ export const TABLE_CONTENT = {
   COUNT_POST_IN_AUTHOR_TABLE: 4,
 };
 
-export const FORMS_CONTENT = {
-  CREATE_BOOK: {
-    SELECT_DEFAULT_VALUE: 'Select author',
-  },
-  PLACEHOLDERS: {
-    TITLE: 'Title',
-    DESCRIPTION: 'Description',
-    CODE: 'Code',
-    PAGE_COUNT: 'Pages count',
-    PUBLICATION_DATE: 'Publication date/year',
-    FIRST_NAME: 'First Name',
-    LAST_NAME: 'Last Name',
-    BIRTH_DATE: 'Birth date',
-    COUNTRY_OF_BIRTH: 'Country of Birth',
-    EMAIL: 'Email',
-    PASSWORD: 'Password',
-  },
-};
+export const BOOKS_TABLE_COLUMN = [
+  'title', 'codeId', 'author', 'pagesCount', 'publicationDate',
+];
+
+export const AUTHORS_TABLE_COLUMN = [
+  'firstName', 'lastName', 'birthDate', 'countryOfBirth',
+];
+
+export const BOOK_TABLE_TYPE = 'book';
+
+export const AUTHOR_TABLE_TYPE = 'author';

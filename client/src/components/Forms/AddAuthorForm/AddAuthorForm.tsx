@@ -1,6 +1,7 @@
 import React from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
+import { connect } from 'react-redux';
 import {
   FormStyled,
   InputWrapper,
@@ -9,14 +10,38 @@ import {
 } from '../../shared/StyledComponents';
 import { Input } from '../../shared/Input';
 import { InputTypeSubmit } from '../../shared/Input/InputStyled';
+import { Textarea } from '../../shared/Textarea/index';
+import { createAuthor } from '../../../store/actions/authorActions';
 
 type InputsValue = {
   firstName: string,
+  lastName: string,
   birthDate: string,
   countryOfBirth: string,
+  authorDescription: string,
 };
 
-const AddAuthorForm = () => {
+type AuthorsStateValues = {
+  authors: any,
+}
+
+interface StateValues {
+  books: any;
+  authors: any;
+  state: AuthorsStateValues[];
+}
+
+interface AuthorsProps {
+  createAuthor: any;
+}
+
+/**
+ * Component for showing form for adding a author
+ *
+ * @constructor
+ */
+
+const AddAuthorForm = ({ createAuthor }: AuthorsProps) => {
   const {
     register,
     handleSubmit,
@@ -24,10 +49,17 @@ const AddAuthorForm = () => {
       errors,
     },
   } = useForm<InputsValue>();
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   const onSubmit: SubmitHandler<InputsValue> = (data) => {
-    console.log(JSON.stringify(data));
+    const author = {
+      firstName: data.firstName,
+      lastName: data.lastName,
+      birthDate: data.birthDate,
+      countryOfBirth: data.countryOfBirth,
+      description: data.authorDescription,
+    };
+    createAuthor(author);
   };
 
   return (
@@ -36,52 +68,84 @@ const AddAuthorForm = () => {
         <InputWrapper>
           <Input
             type="text"
-            placeholder={t('formContent.placeholders.firstName')}
+            placeholder={t('form-content.placeholders.first-name')}
             data={{
               ...register('firstName',
                 {
                   required: true,
-                  maxLength: 10,
+                  minLength: 1,
+                  maxLength: 20,
                 }),
             }}
           />
-          {errors?.firstName?.type === 'required' && <WrongNotice>{t('formContent.notice.requiredField')}</WrongNotice>}
+          {errors?.firstName?.type === 'required' && <WrongNotice>{t('form-content.notice.required-field')}</WrongNotice>}
           {errors?.firstName?.type === 'maxLength' && (
-            <WrongNotice>{t('formContent.notice.wrongPassword')}</WrongNotice>
+            <WrongNotice>{t('form-content.notice.required-field')}</WrongNotice>
           )}
         </InputWrapper>
         <InputWrapper>
           <Input
             type="text"
-            placeholder={t('formContent.placeholders.birthDate')}
+            placeholder={t('form-content.placeholders.last-name')}
+            data={{
+              ...register('lastName',
+                {
+                  required: true,
+                  minLength: 1,
+                  maxLength: 30,
+                }),
+            }}
+          />
+          {errors?.lastName?.type === 'required' && <WrongNotice>{t('form-content.notice.required-field')}</WrongNotice>}
+          {errors?.lastName?.type === 'maxLength' && (
+            <WrongNotice>{t('form-content.notice.required-field')}</WrongNotice>
+          )}
+        </InputWrapper>
+        <InputWrapper>
+          <Input
+            type="date"
+            placeholder=""
             data={{
               ...register('birthDate',
                 {
                   required: true,
-                  maxLength: 10,
                 }),
             }}
           />
-          {errors?.birthDate?.type === 'required' && <WrongNotice>{t('formContent.notice.requiredField')}</WrongNotice>}
-          {errors?.birthDate?.type === 'maxLength' && (
-            <WrongNotice>{t('formContent.notice.wrongPassword')}</WrongNotice>
-          )}
+          {errors?.birthDate?.type === 'required' && <WrongNotice>{t('form-content.notice.required-field')}</WrongNotice>}
         </InputWrapper>
         <InputWrapper>
           <Input
             type="text"
-            placeholder={t('formContent.placeholders.countryOfBirth')}
+            placeholder={t('form-content.placeholders.country-of-birth')}
             data={{
               ...register('countryOfBirth',
                 {
                   required: true,
-                  maxLength: 10,
+                  minLength: 1,
+                  maxLength: 30,
                 }),
             }}
           />
-          {errors?.countryOfBirth?.type === 'required' && <WrongNotice>{t('formContent.notice.requiredField')}</WrongNotice>}
+          {errors?.countryOfBirth?.type === 'required' && <WrongNotice>{t('form-content.notice.required-field')}</WrongNotice>}
           {errors?.countryOfBirth?.type === 'maxLength' && (
-            <WrongNotice>{t('formContent.notice.wrongPassword')}</WrongNotice>
+            <WrongNotice>{t('form-content.notice.required-field')}</WrongNotice>
+          )}
+        </InputWrapper>
+        <InputWrapper>
+          <Textarea
+            placeholder={t('form-content.placeholders.description')}
+            data={{
+              ...register('authorDescription',
+                {
+                  required: true,
+                  minLength: 10,
+                }),
+            }}
+          />
+          {errors?.authorDescription?.type === 'required' && <WrongNotice>{t('form-content.notice.required-field')}</WrongNotice>}
+          {errors?.authorDescription?.type === 'maxLength' && (
+            <WrongNotice>{t('form-content.notice.required-field')}</WrongNotice>
           )}
         </InputWrapper>
         <InputTypeSubmit type="submit" />
@@ -90,4 +154,12 @@ const AddAuthorForm = () => {
   );
 };
 
-export default AddAuthorForm;
+const mapDispatchToProps = (dispatch) => ({
+  createAuthor: (authorInfo) => dispatch(createAuthor(authorInfo)),
+});
+
+const mapStateToProps = (state: StateValues) => ({
+  authors: state.authors,
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddAuthorForm);

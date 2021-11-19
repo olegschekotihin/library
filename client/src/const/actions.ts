@@ -1,0 +1,15 @@
+export const ACTIONS_TYPE_USER = {
+  SET_USER: 'SET_USER',
+  LOG_OUT: 'LOG_OUT',
+  AUTO_LOGIN: 'AUTO_LOGIN',
+};
+
+export const ACTION_TYPE_BOOK = {
+  ADD_BOOK: 'ADD_BOOK',
+  GET_ALL_BOOK: 'GET_ALL_BOOK',
+};
+
+export const ACTION_TYPE_AUTHOR = {
+  ADD_AUTHOR: 'ADD_AUTHOR',
+  GET_ALL_AUTHORS: 'GET_ALL_AUTHORS',
+};

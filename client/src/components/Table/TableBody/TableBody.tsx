@@ -18,11 +18,20 @@ type BodyData = {
 
 export interface TableBodyProps {
   bodyData: BodyData[];
+  tableType: string;
 }
+
+/**
+ * Component for showing table body
+ *
+ * @param props
+ * @constructor
+ */
 
 function TableBody(props: TableBodyProps) {
   const {
     bodyData,
+    tableType,
     ...other
   } = props;
 
@@ -32,6 +41,7 @@ function TableBody(props: TableBodyProps) {
         <TableBodyRow
           rowData={rowData}
           key={rowData.id}
+          tableType={tableType}
           {...other}
         />
       )) }
