@@ -7,6 +7,13 @@ interface PaginationProps {
   onPaginate: (number: number) => void;
 }
 
+/**
+ * Component for showing pagination
+ *
+ * @param props
+ * @constructor
+ */
+
 function Pagination(props: PaginationProps) {
   const {
     postsPerPage,
@@ -14,13 +21,13 @@ function Pagination(props: PaginationProps) {
     onPaginate,
     ...other
   } = props;
-  const countPageNumber = Math.ceil(totalPosts / postsPerPage);
-  const pageNumbers = Array.from({ length: countPageNumber }, (_, index) => index + 1);
+  const pageCount = Math.ceil(totalPosts / postsPerPage);
+  const paginationCount = Array.from({ length: pageCount }, (_, index) => index + 1);
 
   return (
     <nav>
       <PaginateList>
-        {pageNumbers.map((number) => (
+        {paginationCount.map((number) => (
           <li key={number}>
             <PaginateLink
               onClick={() => onPaginate(number)}

@@ -8,6 +8,13 @@ interface InputProps {
   title: string;
 }
 
+/**
+ * Component for showing filter input in table head
+ *
+ * @param props
+ * @constructor
+ */
+
 function TableHeadFilter(props: InputProps) {
   const {
     onchange,
@@ -15,11 +22,11 @@ function TableHeadFilter(props: InputProps) {
     dataAttr,
     ...other
   } = props;
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   return (
     <FilterWrapper>
-      {`${t('formContent.filterBy')} ${title}`}
+      {`${t('form-content.filter-by')} ${title}`}
       <InputFilter
         type="text"
         onChange={onchange}

@@ -1,16 +1,20 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { PAGES_TITLE } from '../../const';
 import { PageContainer, PageTitle } from '../../components/shared/StyledComponents';
 import { RegisterForm } from '../../components/Forms/RegisterForm';
 
+/**
+ * Page for showing register form
+ *
+ * @constructor
+ */
+
 const Register = () => {
-  const { PAGE_TITLE_REGISTER } = PAGES_TITLE;
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   return (
     <PageContainer>
-      <PageTitle>{t('titlesPages.registerPage')}</PageTitle>
+      <PageTitle>{t('titles-pages.register-page')}</PageTitle>
       <RegisterForm />
     </PageContainer>
   );

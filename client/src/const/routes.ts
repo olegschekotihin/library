@@ -8,5 +8,6 @@ export const ROUTES_PATH = {
   LOGIN: '/login',
   CREATE_AUTHOR: '/add-author',
   CREATE_BOOK: '/add-book',
+  MY_ACCOUNT: '/my-account',
   NOT_FOUND: '*',
 };

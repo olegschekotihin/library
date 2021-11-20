@@ -2,15 +2,19 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import AddAuthorForm from '../../components/Forms/AddAuthorForm/AddAuthorForm';
 import { PageContainer, PageTitle } from '../../components/shared/StyledComponents';
-import { PAGES_TITLE } from '../../const';
+
+/**
+ * Page for added new author
+ *
+ * @constructor
+ */
 
 function CreateAuthor() {
-  const { PAGE_TITLE_ADD_AUTHOR } = PAGES_TITLE;
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   return (
     <PageContainer>
-      <PageTitle>{t('titlesPages.addAuthorPage')}</PageTitle>
+      <PageTitle>{t('titles-pages.add-author-page')}</PageTitle>
       <AddAuthorForm />
     </PageContainer>
   );

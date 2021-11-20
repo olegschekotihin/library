@@ -19,6 +19,13 @@ interface TableHeadRowProps {
   onSort: () => void;
 }
 
+/**
+ * Component for showing row in table head
+ *
+ * @param props
+ * @constructor
+ */
+
 function TableHeadRow(props: TableHeadRowProps) {
   const {
     allColumnName,
@@ -26,7 +33,7 @@ function TableHeadRow(props: TableHeadRowProps) {
     onSort,
     ...other
   } = props;
-  const { t, i18n } = useTranslation(['translation', 'table']);
+  const { t } = useTranslation(['translation', 'table']);
 
   return (
     <tr>

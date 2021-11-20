@@ -2,8 +2,15 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const path = require('path');
 const webpack = require('webpack');
+const dotenv = require('dotenv');
 
 const isDevelopment = process.env.NODE_ENV !== 'production';
+
+const env = dotenv.config().parsed;
+const envKeys = Object.keys(env).reduce((prev, next) => {
+  prev[`process.env.${next}`] = JSON.stringify(env[next]);
+  return prev;
+}, {});
 
 module.exports = {
   mode: isDevelopment ? 'development' : 'production',
@@ -11,6 +18,7 @@ module.exports = {
   devServer: {
     hot: true,
     historyApiFallback: true,
+    port: process.env.PORT,
   },
   target: 'web',
   output: {
@@ -22,6 +30,8 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './src/index.html',
     }),
+    new webpack.DefinePlugin(envKeys),
+    new webpack.EnvironmentPlugin( { ...process.env } ),
     isDevelopment && new webpack.HotModuleReplacementPlugin(),
     isDevelopment && new ReactRefreshWebpackPlugin(),
   ],

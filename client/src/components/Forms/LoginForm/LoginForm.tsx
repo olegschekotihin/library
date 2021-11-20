@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
+import { connect } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { Input } from '../../shared/Input';
 import {
   FormStyled,
@@ -10,14 +12,22 @@ import {
 } from '../../shared/StyledComponents';
 import { REGEXP } from '../../../const';
 import { InputTypeSubmit } from '../../shared/Input/InputStyled';
+import { fetchUser } from '../../../store/actions/userActions';
 
 type InputsValue = {
   login: string,
   password: string,
 };
 
-const LoginForm = () => {
-  const { t, i18n } = useTranslation();
+/**
+ * Component for showing login form
+ *
+ * @constructor
+ */
+
+const LoginForm = ({ fetchUser, users }) => {
+  const { t } = useTranslation();
+  const history = useHistory();
   const { EMAIL } = REGEXP;
   const {
     register,
@@ -27,9 +37,20 @@ const LoginForm = () => {
     },
   } = useForm<InputsValue>();
 
-  const onSubmit: SubmitHandler<InputsValue> = (data) => {
-    console.log(JSON.stringify(data));
+  const onSubmit: SubmitHandler<InputsValue> = (data, event: any) => {
+    event.preventDefault();
+    const userData = {
+      email: data.login,
+      password: data.password,
+    };
+    fetchUser(userData);
   };
+
+  useEffect(() => {
+    if (users.loggedIn) {
+      history.push('/my-account');
+    }
+  }, [users]);
 
   return (
     <PageContainerSmall>
@@ -37,7 +58,7 @@ const LoginForm = () => {
         <InputWrapper>
           <Input
             type="text"
-            placeholder={t('formContent.placeholders.email')}
+            placeholder={t('form-content.placeholders.email')}
             data={{
               ...register('login',
                 {
@@ -46,15 +67,15 @@ const LoginForm = () => {
                 }),
             }}
           />
-          {errors?.login?.type === 'required' && <WrongNotice>{t('formContent.notice.requiredField')}</WrongNotice>}
+          {errors?.login?.type === 'required' && <WrongNotice>{t('form-content.notice.required-field')}</WrongNotice>}
           {errors?.login?.type === 'pattern' && (
-            <WrongNotice>{t('formContent.notice.invalidEmail')}</WrongNotice>
+          <WrongNotice>{t('form-content.notice.invalid-email')}</WrongNotice>
           )}
         </InputWrapper>
         <InputWrapper>
           <Input
             type="text"
-            placeholder={t('formContent.placeholders.password')}
+            placeholder={t('form-content.placeholders.password')}
             data={{
               ...register('password',
                 {
@@ -63,15 +84,23 @@ const LoginForm = () => {
                 }),
             }}
           />
-          {errors?.password?.type === 'required' && <WrongNotice>{t('formContent.notice.requiredField')}</WrongNotice>}
+          {errors?.password?.type === 'required' && <WrongNotice>{t('form-content.notice.required-field')}</WrongNotice>}
           {errors?.password?.type === 'maxLength' && (
-            <WrongNotice>{t('formContent.notice.wrongPassword')}</WrongNotice>
+          <WrongNotice>{t('form-content.notice.wrongPassword')}</WrongNotice>
           )}
         </InputWrapper>
-        <InputTypeSubmit type="submit" value={t('formContent.submit')} />
+        <InputTypeSubmit type="submit" value={t('form-content.submit')} />
       </FormStyled>
     </PageContainerSmall>
   );
 };
 
-export default LoginForm;
+const mapDispatchToProps = (dispatch) => ({
+  fetchUser: (userInfo) => dispatch(fetchUser(userInfo)),
+});
+
+const mapStateToProps = (state: any) => ({
+  users: state.users,
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);

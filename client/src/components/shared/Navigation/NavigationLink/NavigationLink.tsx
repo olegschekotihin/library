@@ -6,6 +6,13 @@ interface NavLinkProps {
   path: string;
 }
 
+/**
+ * Component for showing link for navigation
+ *
+ * @param props
+ * @constructor
+ */
+
 function NavigationLink(props: NavLinkProps) {
   const { name, path, ...other } = props;
   return (

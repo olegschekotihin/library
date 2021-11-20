@@ -3,13 +3,22 @@ import ButtonStyled from './ButtonStyled';
 
 interface ButtonProps {
   value: string;
-  disabled: boolean
+  modify?: boolean;
+  onClick: () => void;
 }
 
+/**
+ * Component for showing button
+ *
+ * @param props
+ * @constructor
+ */
+
 function Button(props: ButtonProps) {
-  const { value, disabled, ...other } = props;
+  const { value, onClick, ...other } = props;
   return (
     <ButtonStyled
+      onClick={onClick}
       {...other}
     >
       {value}

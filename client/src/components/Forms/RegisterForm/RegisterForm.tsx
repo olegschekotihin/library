@@ -1,6 +1,7 @@
 import React from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
+import { connect } from 'react-redux';
 import { Input } from '../../shared/Input';
 import {
   FormStyled,
@@ -10,6 +11,7 @@ import {
 } from '../../shared/StyledComponents';
 import { REGEXP } from '../../../const';
 import { InputTypeSubmit } from '../../shared/Input/InputStyled';
+import { signUserUp } from '../../../store/actions/userActions';
 
 type InputsValue = {
   firstName: string,
@@ -18,8 +20,14 @@ type InputsValue = {
   password: string,
 };
 
-const RegisterForm = () => {
-  const { t, i18n } = useTranslation();
+/**
+ * Component for showing register form
+ *
+ * @constructor
+ */
+
+const RegisterForm = ({signUserUp}) => {
+  const { t } = useTranslation();
   const { EMAIL } = REGEXP;
   const {
     register,
@@ -29,8 +37,16 @@ const RegisterForm = () => {
     },
   } = useForm<InputsValue>();
 
-  const onSubmit: SubmitHandler<InputsValue> = (data) => {
-    console.log(JSON.stringify(data));
+  const onSubmit: SubmitHandler<InputsValue> = (data, event: any) => {
+    event.preventDefault();
+
+    const user = {
+      firstName: data.firstName,
+      lastName: data.lastName,
+      email: data.email,
+      password: data.password,
+    };
+    signUserUp(user);
   };
 
   return (
@@ -39,7 +55,7 @@ const RegisterForm = () => {
         <InputWrapper>
           <Input
             type="text"
-            placeholder={t('formContent.placeholders.firstName')}
+            placeholder={t('form-content.placeholders.first-name')}
             data={{
               ...register('firstName',
                 {
@@ -48,12 +64,12 @@ const RegisterForm = () => {
                 }),
             }}
           />
-          {errors?.firstName?.type === 'required' && <WrongNotice>{t('formContent.notice.requiredField')}</WrongNotice>}
+          {errors?.firstName?.type === 'required' && <WrongNotice>{t('form-content.notice.required-field')}</WrongNotice>}
         </InputWrapper>
         <InputWrapper>
           <Input
             type="text"
-            placeholder={t('formContent.placeholders.lastName')}
+            placeholder={t('form-content.placeholders.last-name')}
             data={{
               ...register('lastName',
                 {
@@ -62,12 +78,12 @@ const RegisterForm = () => {
                 }),
             }}
           />
-          {errors?.lastName?.type === 'required' && <WrongNotice>{t('formContent.notice.requiredField')}</WrongNotice>}
+          {errors?.lastName?.type === 'required' && <WrongNotice>{t('form-content.notice.required-field')}</WrongNotice>}
         </InputWrapper>
         <InputWrapper>
           <Input
             type="text"
-            placeholder={t('formContent.placeholders.email')}
+            placeholder={t('form-content.placeholders.email')}
             data={{
               ...register('email',
                 {
@@ -76,15 +92,15 @@ const RegisterForm = () => {
                 }),
             }}
           />
-          {errors?.email?.type === 'required' && <WrongNotice>{t('formContent.notice.requiredField')}</WrongNotice>}
+          {errors?.email?.type === 'required' && <WrongNotice>{t('form-content.notice.required-field')}</WrongNotice>}
           {errors?.email?.type === 'pattern' && (
-          <WrongNotice>{t('formContent.notice.invalidEmail')}</WrongNotice>
+          <WrongNotice>{t('form-content.notice.invalid-email')}</WrongNotice>
           )}
         </InputWrapper>
         <InputWrapper>
           <Input
             type="text"
-            placeholder={t('formContent.placeholders.password')}
+            placeholder={t('form-content.placeholders.password')}
             data={{
               ...register('password',
                 {
@@ -93,15 +109,23 @@ const RegisterForm = () => {
                 }),
             }}
           />
-          {errors?.password?.type === 'required' && <WrongNotice>{t('formContent.notice.requiredField')}</WrongNotice>}
+          {errors?.password?.type === 'required' && <WrongNotice>{t('form-content.notice.required-field')}</WrongNotice>}
           {errors?.password?.type === 'maxLength' && (
-          <WrongNotice>{t('formContent.notice.wrongPassword')}</WrongNotice>
+          <WrongNotice>{t('form-content.notice.wrongPassword')}</WrongNotice>
           )}
         </InputWrapper>
-        <InputTypeSubmit type="submit" value={t('formContent.submit')} />
+        <InputTypeSubmit type="submit" value={t('form-content.submit')} />
       </FormStyled>
     </PageContainerSmall>
   );
 };
 
-export default RegisterForm;
+const mapStateToProps = (state) => ({
+  userReducer: state.userReducer,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  signUserUp: (userInfo) => dispatch(signUserUp(userInfo)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(RegisterForm);

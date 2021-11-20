@@ -69,15 +69,3 @@ export const InputWrapper = styled.div`
 export const WrongNotice = styled.p`
   color: ${COLORS.RED};
 `;
-
-export const LanguageSwitcherButton = styled.button`
-    background: ${COLORS.WHITE};
-    border: none;
-    border-radius: 0.375em;
-    font-size: 0.875em;
-    padding: 0.625em;
-    margin-right: 0.3125em;
-    cursor: pointer;
-    font-weight: bold;
-    color: ${COLORS.VIOLET};
-`;

@@ -9,6 +9,13 @@ interface TableHeadColumnProps {
   value: string;
 }
 
+/**
+ * Component for showing column in table head
+ *
+ * @param props
+ * @constructor
+ */
+
 function TableHeadColumn(props: TableHeadColumnProps) {
   const {
     name,

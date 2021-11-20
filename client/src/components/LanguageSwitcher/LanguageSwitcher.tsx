@@ -1,9 +1,17 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { LanguageSwitcherButton } from '../shared/StyledComponents';
+import { Button } from '../shared/Button';
+import { LANGUAGE_SWITCHER_LINK_LIST } from '../../const';
+
+/**
+ * Component for showing language switcher buttons
+ *
+ * @constructor
+ */
 
 function LanguageSwitcher() {
-  const { t, i18n } = useTranslation();
+  const { i18n } = useTranslation();
+  const langSwitchersData = LANGUAGE_SWITCHER_LINK_LIST;
 
   const changeLanguage = (language: string | undefined) => {
     i18n.changeLanguage(language);
@@ -11,10 +19,17 @@ function LanguageSwitcher() {
 
   return (
     <div>
-      <LanguageSwitcherButton onClick={() => changeLanguage('en')}>EN</LanguageSwitcherButton>
-      <LanguageSwitcherButton onClick={() => changeLanguage('ru')}>RU</LanguageSwitcherButton>
+      {
+        langSwitchersData.map((langSwitcher) => (
+          <Button
+            key={langSwitcher.lang}
+            value={langSwitcher.lang}
+            modify
+            onClick={() => changeLanguage(langSwitcher.lang)}
+          />
+        ))
+      }
     </div>
-
   );
 }
 

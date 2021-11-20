@@ -18,6 +18,13 @@ interface TableHeadProps {
   onSort: () => void;
 }
 
+/**
+ * Component for showing table head
+ *
+ * @param props
+ * @constructor
+ */
+
 function TableHead(props: TableHeadProps) {
   const {
     headData,

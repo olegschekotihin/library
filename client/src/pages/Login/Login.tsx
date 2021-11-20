@@ -3,12 +3,18 @@ import { useTranslation } from 'react-i18next';
 import { PageContainer, PageTitle } from '../../components/shared/StyledComponents';
 import { LoginForm } from '../../components/Forms/LoginForm';
 
+/**
+ * Page for showing login form
+ *
+ * @constructor
+ */
+
 const Login = () => {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   return (
     <PageContainer>
-      <PageTitle>{t('titlesPages.loginPage')}</PageTitle>
+      <PageTitle>{t('titles-pages.login-page')}</PageTitle>
       <LoginForm />
     </PageContainer>
   );
